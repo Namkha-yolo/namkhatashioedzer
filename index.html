@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #ffffff;
+            --text: #000000;
+            --accent: #ff3d00;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+            cursor: default;
+        }
+
+        /* Custom Cursor */
+        .cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--text);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.1s ease, background 0.2s ease;
+            mix-blend-mode: difference;
+        }
+
+        .cursor.hover {
+            transform: scale(2);
+            background: var(--text);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .logo sup {
+            font-size: 0.6rem;
+            vertical-align: super;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-size: 0.9rem;
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--text);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            padding: 8rem 3rem 2rem;
+            position: relative;
+        }
+
+        .hero-left {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-right: 4rem;
+            position: relative;
+        }
+
+        .subtitle {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 2rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .intro {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 3rem;
+            max-width: 500px;
+        }
+
+        /* Categories */
+        .categories {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .category {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            padding: 1rem 0;
+            border-bottom: 1px solid #e0e0e0;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .category:first-child {
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .category::before {
+            content: attr(data-number);
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.8rem;
+            color: var(--accent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .category:hover {
+            padding-left: 2rem;
+            color: var(--accent);
+        }
+
+        .category:hover::before {
+            opacity: 1;
+        }
+
+        .category .line {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--accent);
+            transition: width 0.4s ease;
+        }
+
+        .category:hover .line {
+            width: 100%;
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            margin-top: 3rem;
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .scroll-indicator::after {
+            content: '';
+            width: 50px;
+            height: 1px;
+            background: var(--text);
+            animation: scrollLine 2s ease-in-out infinite;
+        }
+
+        @keyframes scrollLine {
+            0%, 100% { transform: scaleX(1); transform-origin: left; }
+            50% { transform: scaleX(1.5); transform-origin: left; }
+        }
+
+        /* Hero Right - Image */
+        .hero-right {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .image-container {
+            width: 100%;
+            max-width: 500px;
+            height: 600px;
+            background: #000;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            position: relative;
+        }
+
+        .profile-placeholder::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(255, 255, 255, 0.03) 2px,
+                rgba(255, 255, 255, 0.03) 4px
+            );
+            animation: scanlines 8s linear infinite;
+        }
+
+        @keyframes scanlines {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(100%); }
+        }
+
+        /* Glitch effect */
+        .glitch-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+        }
+
+        .glitch-line {
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.8);
+            animation: glitchLine 3s ease-in-out infinite;
+        }
+
+        @keyframes glitchLine {
+            0%, 100% { top: 0; opacity: 0; }
+            10% { top: 20%; opacity: 1; }
+            20% { top: 20%; opacity: 0; }
+            30% { top: 50%; opacity: 1; }
+            40% { top: 50%; opacity: 0; }
+            50% { top: 80%; opacity: 1; }
+            60% { top: 80%; opacity: 0; }
+        }
+
+        /* Abstract shapes */
+        .abstract-shapes {
+            position: fixed;
+            left: -100px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 250px;
+            height: 400px;
+            z-index: -1;
+            opacity: 0.9;
+        }
+
+        .shape {
+            position: absolute;
+            width: 20px;
+            height: 8px;
+            background: var(--text);
+            transform-origin: center;
+        }
+
+        /* Info badges */
+        .info-badge {
+            position: absolute;
+            font-size: 0.75rem;
+            letter-spacing: 0.05em;
+        }
+
+        .badge-top {
+            top: 8rem;
+            right: 3rem;
+            color: var(--accent);
+        }
+
+        .badge-namaste {
+            top: 8rem;
+            right: 3rem;
+            text-align: right;
+        }
+
+        /* Marquee */
+        .marquee-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--text);
+            color: var(--bg);
+            padding: 1rem 0;
+            overflow: hidden;
+        }
+
+        .marquee {
+            display: flex;
+            animation: marquee 20s linear infinite;
+            white-space: nowrap;
+        }
+
+        .marquee span {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            padding: 0 2rem;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Project sections (hidden by default) */
+        .projects-section {
+            display: none;
+            min-height: 100vh;
+            padding: 8rem 3rem;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .projects-section.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 4rem;
+            border-bottom: 2px solid var(--text);
+            padding-bottom: 2rem;
+        }
+
+        .section-title {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+        }
+
+        .back-btn {
+            font-size: 1rem;
+            background: none;
+            border: 2px solid var(--text);
+            padding: 1rem 2rem;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: var(--text);
+            color: var(--bg);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+
+        .project-card {
+            border: 1px solid #e0e0e0;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            border-color: var(--text);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-number {
+            font-size: 0.8rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .project-desc {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            font-size: 0.7rem;
+            padding: 0.3rem 0.8rem;
+            background: #f0f0f0;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .empty-state {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 4rem;
+            border: 2px dashed #e0e0e0;
+        }
+
+        .empty-state h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .empty-state p {
+            color: #666;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .hero-left {
+                padding-right: 0;
+            }
+
+            .hero-right {
+                order: -1;
+            }
+
+            .image-container {
+                height: 400px;
+            }
+
+            .abstract-shapes {
+                display: none;
+            }
+
+            nav {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-links {
+                gap: 1.5rem;
+            }
+        }
+
+        /* Page transitions */
+        .page {
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        .page.hidden {
+            opacity: 0;
+            pointer-events: none;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">PORTFOLIO<sup>&copy;</sup></div>
+        <div class="nav-links">
+            <a href="#" data-hover>ABOUT</a>
+            <a href="#" data-hover>PROJECTS</a>
+            <a href="#" data-hover>CONTACT</a>
+        </div>
+    </nav>
+
+    <!-- Abstract Shapes -->
+    <div class="abstract-shapes" id="shapes"></div>
+
+    <!-- Hero Section -->
+    <section class="hero page" id="hero">
+        <div class="hero-left">
+            <p class="subtitle">Creative Technologist</p>
+            <p class="intro">
+                A multidisciplinary creator working at the intersection of technology,
+                design, and art. Building experiences that push boundaries and challenge
+                conventions.
+            </p>
+
+            <div class="categories">
+                <div class="category" data-category="swe" data-number="01">
+                    SWE
+                    <span class="line"></span>
+                </div>
+                <div class="category" data-category="cybersecurity" data-number="02">
+                    CYBERSECURITY
+                    <span class="line"></span>
+                </div>
+                <div class="category" data-category="ai" data-number="03">
+                    AI
+                    <span class="line"></span>
+                </div>
+                <div class="category" data-category="fashion" data-number="04">
+                    FASHION
+                    <span class="line"></span>
+                </div>
+                <div class="category" data-category="music" data-number="05">
+                    MUSIC
+                    <span class="line"></span>
+                </div>
+                <div class="category" data-category="art" data-number="06">
+                    ART
+                    <span class="line"></span>
+                </div>
+            </div>
+
+            <div class="scroll-indicator">
+                Click a category to explore
+            </div>
+        </div>
+
+        <div class="hero-right">
+            <div class="info-badge badge-namaste">HELLO</div>
+            <div class="image-container">
+                <div class="profile-placeholder">
+                    Your Image Here
+                </div>
+                <div class="glitch-overlay">
+                    <div class="glitch-line"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Sections -->
+    <section class="projects-section" id="swe-section" data-section="swe">
+        <div class="section-header">
+            <h1 class="section-title">SWE</h1>
+            <button class="back-btn" onclick="showHero()">BACK</button>
+        </div>
+        <div class="projects-grid" id="swe-projects">
+            <div class="empty-state">
+                <h3>Projects Coming Soon</h3>
+                <p>Software engineering projects will be displayed here.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="projects-section" id="cybersecurity-section" data-section="cybersecurity">
+        <div class="section-header">
+            <h1 class="section-title">CYBERSECURITY</h1>
+            <button class="back-btn" onclick="showHero()">BACK</button>
+        </div>
+        <div class="projects-grid" id="cybersecurity-projects">
+            <div class="empty-state">
+                <h3>Projects Coming Soon</h3>
+                <p>Cybersecurity projects will be displayed here.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="projects-section" id="ai-section" data-section="ai">
+        <div class="section-header">
+            <h1 class="section-title">AI</h1>
+            <button class="back-btn" onclick="showHero()">BACK</button>
+        </div>
+        <div class="projects-grid" id="ai-projects">
+            <div class="empty-state">
+                <h3>Projects Coming Soon</h3>
+                <p>AI projects will be displayed here.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="projects-section" id="fashion-section" data-section="fashion">
+        <div class="section-header">
+            <h1 class="section-title">FASHION</h1>
+            <button class="back-btn" onclick="showHero()">BACK</button>
+        </div>
+        <div class="projects-grid" id="fashion-projects">
+            <div class="empty-state">
+                <h3>Projects Coming Soon</h3>
+                <p>Fashion projects will be displayed here.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="projects-section" id="music-section" data-section="music">
+        <div class="section-header">
+            <h1 class="section-title">MUSIC</h1>
+            <button class="back-btn" onclick="showHero()">BACK</button>
+        </div>
+        <div class="projects-grid" id="music-projects">
+            <div class="empty-state">
+                <h3>Projects Coming Soon</h3>
+                <p>Music projects will be displayed here.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="projects-section" id="art-section" data-section="art">
+        <div class="section-header">
+            <h1 class="section-title">ART</h1>
+            <button class="back-btn" onclick="showHero()">BACK</button>
+        </div>
+        <div class="projects-grid" id="art-projects">
+            <div class="empty-state">
+                <h3>Projects Coming Soon</h3>
+                <p>Art projects will be displayed here.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Marquee -->
+    <div class="marquee-container">
+        <div class="marquee">
+            <span>YOUR NAME</span>
+            <span>YOUR NAME</span>
+            <span>YOUR NAME</span>
+            <span>YOUR NAME</span>
+            <span>YOUR NAME</span>
+            <span>YOUR NAME</span>
+            <span>YOUR NAME</span>
+            <span>YOUR NAME</span>
+        </div>
+    </div>
+
+    <script>
+        // Projects data structure - add your projects here
+        const projectsData = {
+            swe: [
+                // Example structure:
+                // { title: "Project Name", description: "Description here", tags: ["React", "Node.js"] }
+            ],
+            cybersecurity: [],
+            ai: [],
+            fashion: [],
+            music: [],
+            art: []
+        };
+
+        // Custom cursor
+        const cursor = document.querySelector('.cursor');
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX - 10 + 'px';
+            cursor.style.top = e.clientY - 10 + 'px';
+        });
+
+        document.querySelectorAll('a, button, .category, .project-card').forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+        });
+
+        // Generate abstract shapes
+        const shapesContainer = document.getElementById('shapes');
+        for (let i = 0; i < 50; i++) {
+            const shape = document.createElement('div');
+            shape.className = 'shape';
+            shape.style.left = Math.random() * 200 + 'px';
+            shape.style.top = Math.random() * 400 + 'px';
+            shape.style.transform = `rotate(${Math.random() * 360}deg)`;
+            shape.style.width = (Math.random() * 15 + 10) + 'px';
+            shape.style.height = (Math.random() * 4 + 4) + 'px';
+            shapesContainer.appendChild(shape);
+        }
+
+        // Category click handlers
+        document.querySelectorAll('.category').forEach(category => {
+            category.addEventListener('click', () => {
+                const categoryName = category.dataset.category;
+                showSection(categoryName);
+            });
+        });
+
+        function showSection(categoryName) {
+            // Hide hero
+            document.getElementById('hero').classList.add('hidden');
+
+            // Hide all sections first
+            document.querySelectorAll('.projects-section').forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Show selected section
+            const section = document.getElementById(`${categoryName}-section`);
+            setTimeout(() => {
+                section.classList.add('active');
+                renderProjects(categoryName);
+            }, 100);
+
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        function showHero() {
+            // Hide all sections
+            document.querySelectorAll('.projects-section').forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Show hero
+            document.getElementById('hero').classList.remove('hidden');
+            window.scrollTo(0, 0);
+        }
+
+        function renderProjects(category) {
+            const container = document.getElementById(`${category}-projects`);
+            const projects = projectsData[category];
+
+            if (projects.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <h3>Projects Coming Soon</h3>
+                        <p>${getCategoryDescription(category)} projects will be displayed here.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = projects.map((project, index) => `
+                <div class="project-card">
+                    <div class="project-number">#${String(index + 1).padStart(2, '0')}</div>
+                    <h3 class="project-title">${project.title}</h3>
+                    <p class="project-desc">${project.description}</p>
+                    <div class="project-tags">
+                        ${project.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                    </div>
+                </div>
+            `).join('');
+
+            // Re-attach cursor hover effects
+            document.querySelectorAll('.project-card').forEach(el => {
+                el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+                el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+            });
+        }
+
+        function getCategoryDescription(category) {
+            const descriptions = {
+                swe: 'Software Engineering',
+                cybersecurity: 'Cybersecurity',
+                ai: 'Artificial Intelligence',
+                fashion: 'Fashion',
+                music: 'Music',
+                art: 'Art'
+            };
+            return descriptions[category] || category;
+        }
+
+        // Parallax effect on shapes
+        document.addEventListener('mousemove', (e) => {
+            const shapes = document.querySelectorAll('.shape');
+            const x = (e.clientX / window.innerWidth - 0.5) * 20;
+            const y = (e.clientY / window.innerHeight - 0.5) * 20;
+
+            shapes.forEach((shape, i) => {
+                const speed = (i % 3 + 1) * 0.5;
+                shape.style.transform = `translate(${x * speed}px, ${y * speed}px) rotate(${Math.random() * 360}deg)`;
+            });
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                showHero();
+            }
+        });
+    </script>
+</body>
+</html>
