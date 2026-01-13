@@ -5,613 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --bg: #ffffff;
-            --text: #000000;
-            --accent: #ff3d00;
-        }
-
-        body {
-            font-family: 'Space Grotesk', sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            overflow-x: hidden;
-            cursor: default;
-            min-height: 100vh;
-            padding-bottom: 50px;
-        }
-
-        /* Custom Cursor */
-        .cursor {
-            width: 20px;
-            height: 20px;
-            border: 2px solid var(--text);
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            z-index: 9999;
-            transition: transform 0.1s ease, background 0.2s ease;
-            mix-blend-mode: difference;
-        }
-
-        .cursor.hover {
-            transform: scale(2);
-            background: var(--text);
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            padding: 1.5rem 3rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 100;
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-        }
-
-        .logo {
-            font-size: 1.2rem;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-        }
-
-        .logo sup {
-            font-size: 0.6rem;
-            vertical-align: super;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 3rem;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text);
-            font-size: 0.9rem;
-            font-weight: 500;
-            position: relative;
-            padding: 0.5rem 0;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--text);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* Hero Section */
-        .hero {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            padding: 8rem 3rem 6rem;
-            position: relative;
-            min-height: calc(100vh - 80px);
-        }
-
-        .hero-left {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding-right: 4rem;
-            position: relative;
-        }
-
-        .hero-right {
-            position: fixed;
-            right: 3rem;
-            top: 50%;
-            transform: translateY(-50%);
-            width: calc(50% - 4.5rem);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10;
-        }
-
-        .subtitle {
-            font-size: 0.9rem;
-            color: #666;
-            margin-bottom: 2rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-        }
-
-        .intro {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #333;
-            margin-bottom: 3rem;
-            max-width: 500px;
-        }
-
-        /* Categories */
-        .categories {
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-        }
-
-        .category {
-            font-size: clamp(2rem, 4vw, 3.5rem);
-            font-weight: 700;
-            letter-spacing: -0.03em;
-            padding: 1rem 0;
-            border-bottom: 1px solid #e0e0e0;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .category:first-child {
-            border-top: 1px solid #e0e0e0;
-        }
-
-        .category::before {
-            content: attr(data-number);
-            position: absolute;
-            right: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 0.8rem;
-            color: var(--accent);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .category:hover {
-            padding-left: 2rem;
-            color: var(--accent);
-        }
-
-        .category:hover::before {
-            opacity: 1;
-        }
-
-        .category .line {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 3px;
-            background: var(--accent);
-            transition: width 0.4s ease;
-        }
-
-        .category:hover .line {
-            width: 100%;
-        }
-
-        /* Scroll indicator */
-        .scroll-indicator {
-            margin-top: 3rem;
-            font-size: 0.8rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .scroll-indicator::after {
-            content: '';
-            width: 50px;
-            height: 1px;
-            background: var(--text);
-            animation: scrollLine 2s ease-in-out infinite;
-        }
-
-        @keyframes scrollLine {
-            0%, 100% { transform: scaleX(1); transform-origin: left; }
-            50% { transform: scaleX(1.5); transform-origin: left; }
-        }
-
-        /* Hero Right - Image */
-        .image-container {
-            width: 100%;
-            max-width: 500px;
-            background: #000;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .profile-image {
-            width: 100%;
-            height: auto;
-            display: block;
-            filter: blur(1px) brightness(1.1);
-        }
-
-        .pixelate-wrapper {
-            width: 100%;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .pixelate-wrapper::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: repeating-linear-gradient(
-                0deg,
-                transparent,
-                transparent 2px,
-                rgba(255, 255, 255, 0.03) 2px,
-                rgba(255, 255, 255, 0.03) 4px
-            );
-            animation: scanlines 8s linear infinite;
-            pointer-events: none;
-        }
-
-        @keyframes scanlines {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(100%); }
-        }
-
-        /* Glitch effect */
-        .glitch-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            pointer-events: none;
-        }
-
-        .glitch-line {
-            position: absolute;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: rgba(255, 255, 255, 0.8);
-            animation: glitchLine 3s ease-in-out infinite;
-        }
-
-        @keyframes glitchLine {
-            0%, 100% { top: 0; opacity: 0; }
-            10% { top: 20%; opacity: 1; }
-            20% { top: 20%; opacity: 0; }
-            30% { top: 50%; opacity: 1; }
-            40% { top: 50%; opacity: 0; }
-            50% { top: 80%; opacity: 1; }
-            60% { top: 80%; opacity: 0; }
-        }
-
-        /* Abstract shapes */
-        .abstract-shapes {
-            position: fixed;
-            left: -100px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 250px;
-            height: 400px;
-            z-index: -1;
-            opacity: 0.9;
-        }
-
-        .shape {
-            position: absolute;
-            width: 20px;
-            height: 8px;
-            background: var(--text);
-            transform-origin: center;
-        }
-
-        /* Info badges */
-        .info-badge {
-            position: absolute;
-            font-size: 0.75rem;
-            letter-spacing: 0.05em;
-        }
-
-        .badge-namaste {
-            top: -2rem;
-            right: 0;
-            text-align: right;
-        }
-
-        /* Marquee */
-        .marquee-container {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: var(--text);
-            color: var(--bg);
-            padding: 0.5rem 0;
-            overflow: hidden;
-            z-index: 100;
-        }
-
-        .marquee {
-            display: flex;
-            align-items: center;
-            animation: marquee 15s linear infinite;
-            white-space: nowrap;
-        }
-
-        .marquee span {
-            font-size: clamp(1rem, 2.5vw, 2rem);
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            padding: 0 0.75rem;
-        }
-
-        .marquee .tibetan {
-            font-size: clamp(1.25rem, 3vw, 2.5rem);
-            font-weight: 400;
-        }
-
-        .marquee .translation {
-            font-size: clamp(0.6rem, 1.5vw, 1rem);
-            font-weight: 300;
-            font-style: italic;
-            opacity: 0.7;
-        }
-
-        .marquee .separator {
-            font-size: clamp(1rem, 2vw, 1.5rem);
-            opacity: 0.3;
-            padding: 0 1rem;
-        }
-
-        @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        /* Project sections (hidden by default) */
-        .projects-section {
-            display: none;
-            padding: 8rem 3rem 6rem;
-            padding-right: calc(50% + 1.5rem);
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 0.5s ease, transform 0.5s ease;
-            min-height: calc(100vh - 80px);
-        }
-
-        .projects-section.active {
-            display: block;
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 3rem;
-            border-bottom: 2px solid var(--text);
-            padding-bottom: 1.5rem;
-        }
-
-        .section-title {
-            font-size: clamp(2rem, 5vw, 4rem);
-            font-weight: 700;
-            letter-spacing: -0.03em;
-        }
-
-        .back-btn {
-            font-size: 0.9rem;
-            background: none;
-            border: 2px solid var(--text);
-            padding: 0.8rem 1.5rem;
-            cursor: pointer;
-            font-family: inherit;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-
-        .back-btn:hover {
-            background: var(--text);
-            color: var(--bg);
-        }
-
-        .projects-list {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        /* Demo panel - fixed on right */
-        .demo-panel {
-            position: fixed;
-            right: 3rem;
-            top: 50%;
-            transform: translateY(-50%);
-            width: calc(50% - 4.5rem);
-            height: calc(100vh - 200px);
-            background: #000;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 10;
-            overflow: hidden;
-        }
-
-        .demo-panel.active {
-            display: flex;
-        }
-
-        .demo-content {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #333;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-
-        .demo-content iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        .demo-content img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-        }
-
-        .demo-placeholder {
-            color: #444;
-            text-align: center;
-        }
-
-        .demo-placeholder p {
-            margin-top: 0.5rem;
-            font-size: 0.75rem;
-            opacity: 0.7;
-            text-transform: none;
-            letter-spacing: 0;
-        }
-
-        .project-card {
-            border: 1px solid #e0e0e0;
-            padding: 1.5rem;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            display: flex;
-            gap: 1.5rem;
-            align-items: flex-start;
-        }
-
-        .project-card:hover {
-            border-color: var(--text);
-            background: #fafafa;
-        }
-
-        .project-card.active {
-            border-color: var(--accent);
-            border-width: 2px;
-            background: #fff;
-        }
-
-        .project-number {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--accent);
-            min-width: 2.5rem;
-        }
-
-        .project-info {
-            flex: 1;
-        }
-
-        .project-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .project-desc {
-            color: #666;
-            line-height: 1.5;
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
-
-        .project-tags {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-        }
-
-        .tag {
-            font-size: 0.65rem;
-            padding: 0.25rem 0.6rem;
-            background: #f0f0f0;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-        }
-
-        .empty-state {
-            text-align: center;
-            padding: 3rem;
-            border: 2px dashed #e0e0e0;
-        }
-
-        .empty-state h3 {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .empty-state p {
-            color: #666;
-            font-size: 0.9rem;
-        }
-
-        /* Responsive */
-        @media (max-width: 900px) {
-            .hero {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-
-            .hero-left {
-                padding-right: 0;
-            }
-
-            .hero-right {
-                order: -1;
-            }
-
-            .image-container {
-                height: 400px;
-            }
-
-            .abstract-shapes {
-                display: none;
-            }
-
-            nav {
-                padding: 1rem 1.5rem;
-            }
-
-            .nav-links {
-                gap: 1.5rem;
-            }
-        }
-
-        /* Page transitions */
-        .page {
-            transition: opacity 0.4s ease, transform 0.4s ease;
-        }
-
-        .page.hidden {
-            display: none !important;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <!-- Custom Cursor -->
@@ -778,27 +172,19 @@
     <!-- Marquee -->
     <div class="marquee-container">
         <div class="marquee">
-            <span class="tibetan">ཁྱེད་ངག་ཉམས་འགྱུར་རྫོགས་པའི་གླུ།</span>
-            <span class="tibetan">ཐོས་ནས་མྱོས་པས་བཟི་བ་ཡི།</span>
-            <span class="tibetan">ཡིད་སྲུབས་ལག་པ་ཤོར་བའི་མདའ།</span>
-            <span class="tibetan">བདག་གི་སྙིང་ལ་རྣམ་པར་བབས།</span>
-            <span class="tibetan">ད་ནི་རྐང་དྲུག་དྲེགས་ལྡན་མའི།</span>
-            <span class="tibetan">གླུ་དབྱངས་སྙན་པོས་ཅི་བྱ་ཞེས།</span>
-            <span class="tibetan">གཅིག་ཏུ་ལག་པའི་པདྨོ།</span>
-            <span class="tibetan">བྲང་གི་ངོས་སུ་རྣམ་པར་ཟུམ།</span>
+            <span class="tibetan">རིག་པའི་བུ་ཆུང་ཆགས་པའི་དབྱིངས་སུ་བརྒྱལ།</span>
+            <span class="tibetan">འཇུར་བུའི་བློ་གྲོས་སྲིན་བུའི་བུ་གར་ལྷུངས།</span>
+            <span class="tibetan">སྲེད་པའི་རྣམ་རྟོག་ཐུར་དུ་དྲངས་གྱུར་པས།</span>
+            <span class="tibetan">དགའ་བའི་དེ་ཉིད་སྐྱེ་བོ་དག་གིས་ལྟོས།</span>
             <span class="separator">—</span>
-            <span class="translation">Hearing the song in your elegant voice, the arrow loosed by the god of desire, intoxicated with insanity, landed in my heart. Now, what need is there for the melodious tune of arrogant honeybees? The lotus of my palm.</span>
+            <span class="translation">The small child of awareness swoons in the sphere of desire; The tangled intellect falls into a wormhole. Drawing lustful thoughts down; O beings, see pleasure's true nature.</span>
             <span class="separator">—</span>
-            <span class="tibetan">ཁྱེད་ངག་ཉམས་འགྱུར་རྫོགས་པའི་གླུ།</span>
-            <span class="tibetan">ཐོས་ནས་མྱོས་པས་བཟི་བ་ཡི།</span>
-            <span class="tibetan">ཡིད་སྲུབས་ལག་པ་ཤོར་བའི་མདའ།</span>
-            <span class="tibetan">བདག་གི་སྙིང་ལ་རྣམ་པར་བབས།</span>
-            <span class="tibetan">ད་ནི་རྐང་དྲུག་དྲེགས་ལྡན་མའི།</span>
-            <span class="tibetan">གླུ་དབྱངས་སྙན་པོས་ཅི་བྱ་ཞེས།</span>
-            <span class="tibetan">གཅིག་ཏུ་ལག་པའི་པདྨོ།</span>
-            <span class="tibetan">བྲང་གི་ངོས་སུ་རྣམ་པར་ཟུམ།</span>
+            <span class="tibetan">རིག་པའི་བུ་ཆུང་ཆགས་པའི་དབྱིངས་སུ་བརྒྱལ།</span>
+            <span class="tibetan">འཇུར་བུའི་བློ་གྲོས་སྲིན་བུའི་བུ་གར་ལྷུངས།</span>
+            <span class="tibetan">སྲེད་པའི་རྣམ་རྟོག་ཐུར་དུ་དྲངས་གྱུར་པས།</span>
+            <span class="tibetan">དགའ་བའི་དེ་ཉིད་སྐྱེ་བོ་དག་གིས་ལྟོས།</span>
             <span class="separator">—</span>
-            <span class="translation">Hearing the song in your elegant voice, the arrow loosed by the god of desire, intoxicated with insanity, landed in my heart. Now, what need is there for the melodious tune of arrogant honeybees? The lotus of my palm.</span>
+            <span class="translation">The small child of awareness swoons in the sphere of desire; The tangled intellect falls into a wormhole. Drawing lustful thoughts down; O beings, see pleasure's true nature.</span>
             <span class="separator">—</span>
         </div>
     </div>
@@ -885,16 +271,65 @@
             requestAnimationFrame(animatePixelation);
         }
 
-        // Projects data structure - add your projects here
-        // Each project can have: title, description, tags[], and one of: demoUrl, demoImage, demoVideo
+        // Projects data structure
         const projectsData = {
             swe: [
-                // Example:
-                // { title: "Project Name", description: "Description", tags: ["React", "Node.js"], demoUrl: "https://example.com" }
-                // { title: "Project Name", description: "Description", tags: ["Python"], demoImage: "screenshot.png" }
+                {
+                    title: "OnlyWorks",
+                    description: "Cross-platform Electron desktop app for productivity tracking. Built RESTful API with 60+ endpoints, batch processing pipeline with Redis handling 10,000+ daily captures, and Next.js marketing site with Stripe subscriptions.",
+                    tags: ["Electron", "Node.js", "React", "Next.js", "Redis", "Supabase", "Stripe"],
+                    demoUrl: "https://only-works.com"
+                },
+                {
+                    title: "Lotsawa Keyboard",
+                    description: "iOS Tibetan transliteration keyboard with 196K+ dictionary entries. Dual-mode system with n-gram disambiguation achieving >80% auto-selection confidence. Trie data structure for O(m) prefix matching in <100ms.",
+                    tags: ["Swift", "SwiftUI", "SQLite", "Python", "iOS"]
+                },
+                {
+                    title: "Rigden Studios E-commerce",
+                    description: "Custom e-commerce platform handling 200+ monthly transactions with PCI-compliant Stripe integration. Increased conversion rate by 40%.",
+                    tags: ["React", "Node.js", "Stripe", "MongoDB"]
+                },
+                {
+                    title: "NYC DOT Traffic Analysis",
+                    description: "Python tools for traffic data analysis processing 1M+ daily records. Automated reporting workflows reducing manual processing by 75%. Visualization dashboards with PostgreSQL.",
+                    tags: ["Python", "PostgreSQL", "OpenData API", "Data Visualization"]
+                },
+                {
+                    title: "Big Reuse Automation",
+                    description: "Google Apps Script automation for email workflows and inventory tracking at non-profit. Saved 8 hours weekly across team. Trained 10+ non-technical staff on new tools.",
+                    tags: ["Google Apps Script", "Automation", "Non-Profit"]
+                }
             ],
-            cybersecurity: [],
-            ai: [],
+            cybersecurity: [
+                {
+                    title: "OnlyWorks Security Architecture",
+                    description: "Designed secure OAuth 2.0 authentication with Google/GitHub, JWT tokens, refresh token rotation, and role-based access control. Implemented Supabase Row-Level Security reducing unauthorized access to zero.",
+                    tags: ["OAuth 2.0", "JWT", "RBAC", "Row-Level Security", "Supabase"]
+                },
+                {
+                    title: "Apple Code Signing & Notarization",
+                    description: "Achieved Apple notarization with code signing for macOS distribution. Configured secure GitHub Releases auto-update system with electron-updater.",
+                    tags: ["Code Signing", "Apple Notarization", "Electron", "macOS Security"]
+                }
+            ],
+            ai: [
+                {
+                    title: "OnlyWorks AI Analysis",
+                    description: "Integrated Google Gemini AI for real-time productivity analysis achieving 95% accuracy. Built RAG pipeline with Pinecone vector DB for intelligent screenshot analysis.",
+                    tags: ["Google Gemini", "RAG", "Pinecone", "Vector DB", "LangChain"]
+                },
+                {
+                    title: "DFX RAG Chatbot",
+                    description: "Built RAG chatbot using LangChain, OpenAI APIs, and Pinecone. Trained ML models achieving 92% accuracy on document classification. Optimized query response from 5s to 200ms through embedding caching.",
+                    tags: ["LangChain", "OpenAI", "Pinecone", "FastAPI", "ML"]
+                },
+                {
+                    title: "Platform OCR Pipeline",
+                    description: "Implemented platform-specific OCR: macOS Vision Framework via Swift CLI and Tesseract.js for Windows/Linux. Dual-pipeline architecture serving 500+ professionals.",
+                    tags: ["OCR", "Vision Framework", "Tesseract.js", "Swift", "Cross-Platform"]
+                }
+            ],
             fashion: [],
             music: [],
             art: []
