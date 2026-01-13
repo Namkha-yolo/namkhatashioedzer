@@ -22,9 +22,9 @@
             font-family: 'Space Grotesk', sans-serif;
             background: var(--bg);
             color: var(--text);
-            overflow-x: hidden;
+            overflow: hidden;
             cursor: default;
-            min-height: 100vh;
+            height: 100vh;
             display: flex;
             flex-direction: column;
         }
@@ -53,7 +53,7 @@
             top: 0;
             left: 0;
             right: 0;
-            padding: 1.5rem 3rem;
+            padding: 1rem 3rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -107,8 +107,9 @@
             flex: 1;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            padding: 8rem 3rem 4rem;
+            padding: 5rem 3rem 1rem;
             position: relative;
+            overflow: hidden;
         }
 
         .hero-left {
@@ -120,18 +121,18 @@
         }
 
         .subtitle {
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             color: #666;
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
             letter-spacing: 0.1em;
             text-transform: uppercase;
         }
 
         .intro {
-            font-size: 1.1rem;
-            line-height: 1.8;
+            font-size: 0.95rem;
+            line-height: 1.6;
             color: #333;
-            margin-bottom: 3rem;
+            margin-bottom: 1.5rem;
             max-width: 500px;
         }
 
@@ -143,10 +144,10 @@
         }
 
         .category {
-            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-size: clamp(1.4rem, 2.5vw, 2rem);
             font-weight: 700;
             letter-spacing: -0.03em;
-            padding: 1rem 0;
+            padding: 0.5rem 0;
             border-bottom: 1px solid #e0e0e0;
             cursor: pointer;
             position: relative;
@@ -195,8 +196,8 @@
 
         /* Scroll indicator */
         .scroll-indicator {
-            margin-top: 3rem;
-            font-size: 0.8rem;
+            margin-top: 1.5rem;
+            font-size: 0.75rem;
             letter-spacing: 0.1em;
             text-transform: uppercase;
             display: flex;
@@ -227,8 +228,8 @@
 
         .image-container {
             width: 100%;
-            max-width: 500px;
-            height: 600px;
+            max-width: 400px;
+            height: clamp(300px, 50vh, 500px);
             background: #000;
             position: relative;
             overflow: hidden;
@@ -344,8 +345,9 @@
             margin-top: auto;
             background: var(--text);
             color: var(--bg);
-            padding: 1rem 0;
+            padding: 0.5rem 0;
             overflow: hidden;
+            flex-shrink: 0;
         }
 
         .marquee {
@@ -356,19 +358,19 @@
         }
 
         .marquee span {
-            font-size: clamp(2rem, 5vw, 4rem);
+            font-size: clamp(1rem, 2vw, 1.5rem);
             font-weight: 700;
             letter-spacing: -0.02em;
-            padding: 0 1.5rem;
+            padding: 0 1rem;
         }
 
         .marquee .tibetan {
-            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
             font-weight: 400;
         }
 
         .marquee .translation {
-            font-size: clamp(1.2rem, 3vw, 2rem);
+            font-size: clamp(0.7rem, 1.5vw, 1rem);
             font-weight: 300;
             font-style: italic;
             opacity: 0.7;
@@ -383,10 +385,11 @@
         .projects-section {
             display: none;
             flex: 1;
-            padding: 8rem 3rem 4rem;
+            padding: 5rem 3rem 2rem;
             opacity: 0;
             transform: translateY(50px);
             transition: opacity 0.5s ease, transform 0.5s ease;
+            overflow-y: auto;
         }
 
         .projects-section.active {
@@ -400,9 +403,10 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 4rem;
+            margin-bottom: 2rem;
             border-bottom: 2px solid var(--text);
-            padding-bottom: 2rem;
+            padding-bottom: 1rem;
+            flex-shrink: 0;
         }
 
         .section-title {
