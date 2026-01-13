@@ -241,6 +241,7 @@
             width: 100%;
             height: auto;
             display: block;
+            filter: blur(1px) brightness(1.1);
         }
 
         .pixelate-wrapper {
@@ -388,6 +389,7 @@
         .projects-section {
             display: none;
             padding: 8rem 3rem 6rem;
+            padding-right: calc(50% + 1.5rem);
             opacity: 0;
             transform: translateY(50px);
             transition: opacity 0.5s ease, transform 0.5s ease;
@@ -404,22 +406,22 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 4rem;
+            margin-bottom: 3rem;
             border-bottom: 2px solid var(--text);
-            padding-bottom: 2rem;
+            padding-bottom: 1.5rem;
         }
 
         .section-title {
-            font-size: clamp(3rem, 8vw, 6rem);
+            font-size: clamp(2rem, 5vw, 4rem);
             font-weight: 700;
             letter-spacing: -0.03em;
         }
 
         .back-btn {
-            font-size: 1rem;
+            font-size: 0.9rem;
             background: none;
             border: 2px solid var(--text);
-            padding: 1rem 2rem;
+            padding: 0.8rem 1.5rem;
             cursor: pointer;
             font-family: inherit;
             font-weight: 500;
@@ -431,41 +433,112 @@
             color: var(--bg);
         }
 
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 3rem;
+        .projects-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        /* Demo panel - fixed on right */
+        .demo-panel {
+            position: fixed;
+            right: 3rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: calc(50% - 4.5rem);
+            height: calc(100vh - 200px);
+            background: #000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            overflow: hidden;
+        }
+
+        .demo-panel.active {
+            display: flex;
+        }
+
+        .demo-content {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .demo-content iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .demo-content img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .demo-placeholder {
+            color: #444;
+            text-align: center;
+        }
+
+        .demo-placeholder p {
+            margin-top: 0.5rem;
+            font-size: 0.75rem;
+            opacity: 0.7;
+            text-transform: none;
+            letter-spacing: 0;
         }
 
         .project-card {
             border: 1px solid #e0e0e0;
-            padding: 2rem;
+            padding: 1.5rem;
             transition: all 0.3s ease;
             cursor: pointer;
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
         }
 
         .project-card:hover {
             border-color: var(--text);
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            background: #fafafa;
+        }
+
+        .project-card.active {
+            border-color: var(--accent);
+            border-width: 2px;
+            background: #fff;
         }
 
         .project-number {
-            font-size: 0.8rem;
+            font-size: 1.5rem;
+            font-weight: 700;
             color: var(--accent);
-            margin-bottom: 1rem;
+            min-width: 2.5rem;
+        }
+
+        .project-info {
+            flex: 1;
         }
 
         .project-title {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             font-weight: 600;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
         }
 
         .project-desc {
             color: #666;
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
+            line-height: 1.5;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
         }
 
         .project-tags {
@@ -475,27 +548,27 @@
         }
 
         .tag {
-            font-size: 0.7rem;
-            padding: 0.3rem 0.8rem;
+            font-size: 0.65rem;
+            padding: 0.25rem 0.6rem;
             background: #f0f0f0;
             letter-spacing: 0.05em;
             text-transform: uppercase;
         }
 
         .empty-state {
-            grid-column: 1 / -1;
             text-align: center;
-            padding: 4rem;
+            padding: 3rem;
             border: 2px dashed #e0e0e0;
         }
 
         .empty-state h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
         }
 
         .empty-state p {
             color: #666;
+            font-size: 0.9rem;
         }
 
         /* Responsive */
@@ -613,13 +686,23 @@
         </div>
     </section>
 
+    <!-- Demo Panel (shared across all project sections) -->
+    <div class="demo-panel" id="demo-panel">
+        <div class="demo-content" id="demo-content">
+            <div class="demo-placeholder">
+                <span>Select a project</span>
+                <p>Click on a project to see its demo</p>
+            </div>
+        </div>
+    </div>
+
     <!-- Project Sections -->
     <section class="projects-section" id="swe-section" data-section="swe">
         <div class="section-header">
             <h1 class="section-title">SWE</h1>
             <button class="back-btn" onclick="showHero()">BACK</button>
         </div>
-        <div class="projects-grid" id="swe-projects">
+        <div class="projects-list" id="swe-projects">
             <div class="empty-state">
                 <h3>Projects Coming Soon</h3>
                 <p>Software engineering projects will be displayed here.</p>
@@ -632,7 +715,7 @@
             <h1 class="section-title">CYBERSECURITY</h1>
             <button class="back-btn" onclick="showHero()">BACK</button>
         </div>
-        <div class="projects-grid" id="cybersecurity-projects">
+        <div class="projects-list" id="cybersecurity-projects">
             <div class="empty-state">
                 <h3>Projects Coming Soon</h3>
                 <p>Cybersecurity projects will be displayed here.</p>
@@ -645,7 +728,7 @@
             <h1 class="section-title">AI</h1>
             <button class="back-btn" onclick="showHero()">BACK</button>
         </div>
-        <div class="projects-grid" id="ai-projects">
+        <div class="projects-list" id="ai-projects">
             <div class="empty-state">
                 <h3>Projects Coming Soon</h3>
                 <p>AI projects will be displayed here.</p>
@@ -658,7 +741,7 @@
             <h1 class="section-title">FASHION</h1>
             <button class="back-btn" onclick="showHero()">BACK</button>
         </div>
-        <div class="projects-grid" id="fashion-projects">
+        <div class="projects-list" id="fashion-projects">
             <div class="empty-state">
                 <h3>Projects Coming Soon</h3>
                 <p>Fashion projects will be displayed here.</p>
@@ -671,7 +754,7 @@
             <h1 class="section-title">MUSIC</h1>
             <button class="back-btn" onclick="showHero()">BACK</button>
         </div>
-        <div class="projects-grid" id="music-projects">
+        <div class="projects-list" id="music-projects">
             <div class="empty-state">
                 <h3>Projects Coming Soon</h3>
                 <p>Music projects will be displayed here.</p>
@@ -684,7 +767,7 @@
             <h1 class="section-title">ART</h1>
             <button class="back-btn" onclick="showHero()">BACK</button>
         </div>
-        <div class="projects-grid" id="art-projects">
+        <div class="projects-list" id="art-projects">
             <div class="empty-state">
                 <h3>Projects Coming Soon</h3>
                 <p>Art projects will be displayed here.</p>
@@ -745,7 +828,7 @@
             // Clear and draw
             ctx.clearRect(0, 0, w, h);
 
-            // Draw small version then scale up
+            // Draw small version then scale up (creates pixelation)
             const smallW = Math.ceil(w / pixelSize);
             const smallH = Math.ceil(h / pixelSize);
 
@@ -753,7 +836,7 @@
             ctx.drawImage(originalImage, 0, 0, smallW, smallH);
             ctx.drawImage(canvas, 0, 0, smallW, smallH, 0, 0, w, h);
 
-            // Convert to grayscale with glitch offset
+            // Brighten and boost saturation (keep colors)
             const imageData = ctx.getImageData(0, 0, w, h);
             const data = imageData.data;
 
@@ -773,11 +856,28 @@
                     const i = (y * w + x) * 4;
                     const srcI = (y * w + srcX) * 4;
 
-                    const gray = data[srcI] * 0.299 + data[srcI + 1] * 0.587 + data[srcI + 2] * 0.114;
-                    const contrast = 1.4;
-                    const adjusted = Math.max(0, Math.min(255, ((gray - 128) * contrast) + 128));
+                    // Brighten and boost colors
+                    const brightness = 1.2;
+                    const saturation = 1.3;
 
-                    data[i] = data[i + 1] = data[i + 2] = adjusted;
+                    let r = data[srcI];
+                    let g = data[srcI + 1];
+                    let b = data[srcI + 2];
+
+                    // Brighten
+                    r = Math.min(255, r * brightness);
+                    g = Math.min(255, g * brightness);
+                    b = Math.min(255, b * brightness);
+
+                    // Boost saturation
+                    const gray = 0.299 * r + 0.587 * g + 0.114 * b;
+                    r = Math.min(255, gray + (r - gray) * saturation);
+                    g = Math.min(255, gray + (g - gray) * saturation);
+                    b = Math.min(255, gray + (b - gray) * saturation);
+
+                    data[i] = r;
+                    data[i + 1] = g;
+                    data[i + 2] = b;
                 }
             }
 
@@ -786,10 +886,12 @@
         }
 
         // Projects data structure - add your projects here
+        // Each project can have: title, description, tags[], and one of: demoUrl, demoImage, demoVideo
         const projectsData = {
             swe: [
-                // Example structure:
-                // { title: "Project Name", description: "Description here", tags: ["React", "Node.js"] }
+                // Example:
+                // { title: "Project Name", description: "Description", tags: ["React", "Node.js"], demoUrl: "https://example.com" }
+                // { title: "Project Name", description: "Description", tags: ["Python"], demoImage: "screenshot.png" }
             ],
             cybersecurity: [],
             ai: [],
@@ -837,6 +939,10 @@
             document.getElementById('hero').classList.add('hidden');
             document.querySelector('.hero-right').style.display = 'none';
 
+            // Show demo panel
+            document.getElementById('demo-panel').classList.add('active');
+            resetDemoPanel();
+
             // Hide all sections first
             document.querySelectorAll('.projects-section').forEach(section => {
                 section.classList.remove('active');
@@ -859,10 +965,41 @@
                 section.classList.remove('active');
             });
 
+            // Hide demo panel
+            document.getElementById('demo-panel').classList.remove('active');
+
             // Show hero
             document.getElementById('hero').classList.remove('hidden');
             document.querySelector('.hero-right').style.display = 'flex';
             window.scrollTo(0, 0);
+        }
+
+        function resetDemoPanel() {
+            document.getElementById('demo-content').innerHTML = `
+                <div class="demo-placeholder">
+                    <span>Select a project</span>
+                    <p>Click on a project to see its demo</p>
+                </div>
+            `;
+        }
+
+        function showDemo(project) {
+            const demoContent = document.getElementById('demo-content');
+
+            if (project.demoUrl) {
+                demoContent.innerHTML = `<iframe src="${project.demoUrl}" allowfullscreen></iframe>`;
+            } else if (project.demoImage) {
+                demoContent.innerHTML = `<img src="${project.demoImage}" alt="${project.title}">`;
+            } else if (project.demoVideo) {
+                demoContent.innerHTML = `<video src="${project.demoVideo}" controls autoplay muted loop></video>`;
+            } else {
+                demoContent.innerHTML = `
+                    <div class="demo-placeholder">
+                        <span>${project.title}</span>
+                        <p>Demo coming soon</p>
+                    </div>
+                `;
+            }
         }
 
         function renderProjects(category) {
@@ -880,21 +1017,40 @@
             }
 
             container.innerHTML = projects.map((project, index) => `
-                <div class="project-card">
-                    <div class="project-number">#${String(index + 1).padStart(2, '0')}</div>
-                    <h3 class="project-title">${project.title}</h3>
-                    <p class="project-desc">${project.description}</p>
-                    <div class="project-tags">
-                        ${project.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                <div class="project-card" data-index="${index}">
+                    <div class="project-number">${String(index + 1).padStart(2, '0')}</div>
+                    <div class="project-info">
+                        <h3 class="project-title">${project.title}</h3>
+                        <p class="project-desc">${project.description}</p>
+                        <div class="project-tags">
+                            ${project.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                        </div>
                     </div>
                 </div>
             `).join('');
 
-            // Re-attach cursor hover effects
-            document.querySelectorAll('.project-card').forEach(el => {
+            // Attach click handlers and cursor effects
+            document.querySelectorAll('.project-card').forEach((el, idx) => {
                 el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
                 el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+                el.addEventListener('click', () => {
+                    // Remove active from all cards
+                    document.querySelectorAll('.project-card').forEach(card => card.classList.remove('active'));
+                    // Add active to clicked card
+                    el.classList.add('active');
+                    // Show demo
+                    showDemo(projects[idx]);
+                });
             });
+
+            // Auto-select first project
+            if (projects.length > 0) {
+                const firstCard = container.querySelector('.project-card');
+                if (firstCard) {
+                    firstCard.classList.add('active');
+                    showDemo(projects[0]);
+                }
+            }
         }
 
         function getCategoryDescription(category) {
