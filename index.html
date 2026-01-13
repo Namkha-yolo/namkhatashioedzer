@@ -118,6 +118,18 @@
             position: relative;
         }
 
+        .hero-right {
+            position: fixed;
+            right: 3rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: calc(50% - 4.5rem);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+
         .subtitle {
             font-size: 0.9rem;
             color: #666;
@@ -217,17 +229,9 @@
         }
 
         /* Hero Right - Image */
-        .hero-right {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-
         .image-container {
             width: 100%;
             max-width: 500px;
-            height: 600px;
             background: #000;
             position: relative;
             overflow: hidden;
@@ -235,13 +239,12 @@
 
         .profile-image {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            height: auto;
+            display: block;
         }
 
         .pixelate-wrapper {
             width: 100%;
-            height: 100%;
             overflow: hidden;
             position: relative;
         }
@@ -325,15 +328,9 @@
             letter-spacing: 0.05em;
         }
 
-        .badge-top {
-            top: 8rem;
-            right: 3rem;
-            color: var(--accent);
-        }
-
         .badge-namaste {
-            top: 8rem;
-            right: 3rem;
+            top: -2rem;
+            right: 0;
             text-align: right;
         }
 
@@ -738,7 +735,7 @@
         };
 
         function animatePixelation() {
-            time += 0.05;
+            time += 0.015;
             const w = originalImage.width;
             const h = originalImage.height;
 
@@ -760,8 +757,8 @@
             const imageData = ctx.getImageData(0, 0, w, h);
             const data = imageData.data;
 
-            // Random glitch lines
-            const glitchY = Math.random() > 0.95 ? Math.floor(Math.random() * h) : -1;
+            // Random glitch lines (less frequent)
+            const glitchY = Math.random() > 0.99 ? Math.floor(Math.random() * h) : -1;
             const glitchOffset = Math.floor(Math.random() * 20) - 10;
 
             for (let y = 0; y < h; y++) {
@@ -838,6 +835,7 @@
         function showSection(categoryName) {
             // Hide hero
             document.getElementById('hero').classList.add('hidden');
+            document.querySelector('.hero-right').style.display = 'none';
 
             // Hide all sections first
             document.querySelectorAll('.projects-section').forEach(section => {
@@ -863,6 +861,7 @@
 
             // Show hero
             document.getElementById('hero').classList.remove('hidden');
+            document.querySelector('.hero-right').style.display = 'flex';
             window.scrollTo(0, 0);
         }
 
