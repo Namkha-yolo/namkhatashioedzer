@@ -24,6 +24,9 @@
             color: var(--text);
             overflow-x: hidden;
             cursor: default;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
         /* Custom Cursor */
@@ -101,10 +104,10 @@
 
         /* Hero Section */
         .hero {
-            min-height: 100vh;
+            flex: 1;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            padding: 8rem 3rem 2rem;
+            padding: 8rem 3rem 4rem;
             position: relative;
         }
 
@@ -336,10 +339,8 @@
 
         /* Marquee */
         .marquee-container {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
+            position: relative;
+            margin-top: auto;
             background: var(--text);
             color: var(--bg);
             padding: 1rem 0;
@@ -367,15 +368,16 @@
         /* Project sections (hidden by default) */
         .projects-section {
             display: none;
-            min-height: 100vh;
-            padding: 8rem 3rem;
+            flex: 1;
+            padding: 8rem 3rem 4rem;
             opacity: 0;
             transform: translateY(50px);
             transition: opacity 0.5s ease, transform 0.5s ease;
         }
 
         .projects-section.active {
-            display: block;
+            display: flex;
+            flex-direction: column;
             opacity: 1;
             transform: translateY(0);
         }
@@ -415,6 +417,8 @@
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
             gap: 3rem;
+            flex: 1;
+            align-content: start;
         }
 
         .project-card {
@@ -516,9 +520,7 @@
         }
 
         .page.hidden {
-            opacity: 0;
-            pointer-events: none;
-            position: absolute;
+            display: none;
         }
     </style>
 </head>
