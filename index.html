@@ -22,11 +22,10 @@
             font-family: 'Space Grotesk', sans-serif;
             background: var(--bg);
             color: var(--text);
-            overflow: hidden;
+            overflow-x: hidden;
             cursor: default;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
+            min-height: 100vh;
+            padding-bottom: 80px;
         }
 
         /* Custom Cursor */
@@ -53,7 +52,7 @@
             top: 0;
             left: 0;
             right: 0;
-            padding: 1rem 3rem;
+            padding: 1.5rem 3rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -104,12 +103,11 @@
 
         /* Hero Section */
         .hero {
-            flex: 1;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            padding: 5rem 3rem 1rem;
+            padding: 8rem 3rem 6rem;
             position: relative;
-            overflow: hidden;
+            min-height: calc(100vh - 80px);
         }
 
         .hero-left {
@@ -121,18 +119,18 @@
         }
 
         .subtitle {
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             color: #666;
-            margin-bottom: 1rem;
+            margin-bottom: 2rem;
             letter-spacing: 0.1em;
             text-transform: uppercase;
         }
 
         .intro {
-            font-size: 0.95rem;
-            line-height: 1.6;
+            font-size: 1.1rem;
+            line-height: 1.8;
             color: #333;
-            margin-bottom: 1.5rem;
+            margin-bottom: 3rem;
             max-width: 500px;
         }
 
@@ -144,10 +142,10 @@
         }
 
         .category {
-            font-size: clamp(1.4rem, 2.5vw, 2rem);
+            font-size: clamp(2rem, 4vw, 3.5rem);
             font-weight: 700;
             letter-spacing: -0.03em;
-            padding: 0.5rem 0;
+            padding: 1rem 0;
             border-bottom: 1px solid #e0e0e0;
             cursor: pointer;
             position: relative;
@@ -196,8 +194,8 @@
 
         /* Scroll indicator */
         .scroll-indicator {
-            margin-top: 1.5rem;
-            font-size: 0.75rem;
+            margin-top: 3rem;
+            font-size: 0.8rem;
             letter-spacing: 0.1em;
             text-transform: uppercase;
             display: flex;
@@ -228,8 +226,8 @@
 
         .image-container {
             width: 100%;
-            max-width: 400px;
-            height: clamp(300px, 50vh, 500px);
+            max-width: 500px;
+            height: 600px;
             background: #000;
             position: relative;
             overflow: hidden;
@@ -341,13 +339,15 @@
 
         /* Marquee */
         .marquee-container {
-            position: relative;
-            margin-top: auto;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
             background: var(--text);
             color: var(--bg);
-            padding: 0.5rem 0;
+            padding: 1rem 0;
             overflow: hidden;
-            flex-shrink: 0;
+            z-index: 100;
         }
 
         .marquee {
@@ -358,19 +358,19 @@
         }
 
         .marquee span {
-            font-size: clamp(1rem, 2vw, 1.5rem);
+            font-size: clamp(2rem, 5vw, 4rem);
             font-weight: 700;
             letter-spacing: -0.02em;
-            padding: 0 1rem;
+            padding: 0 1.5rem;
         }
 
         .marquee .tibetan {
-            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+            font-size: clamp(2.5rem, 6vw, 5rem);
             font-weight: 400;
         }
 
         .marquee .translation {
-            font-size: clamp(0.7rem, 1.5vw, 1rem);
+            font-size: clamp(1.2rem, 3vw, 2rem);
             font-weight: 300;
             font-style: italic;
             opacity: 0.7;
@@ -384,17 +384,15 @@
         /* Project sections (hidden by default) */
         .projects-section {
             display: none;
-            flex: 1;
-            padding: 5rem 3rem 2rem;
+            padding: 8rem 3rem 6rem;
             opacity: 0;
             transform: translateY(50px);
             transition: opacity 0.5s ease, transform 0.5s ease;
-            overflow-y: auto;
+            min-height: calc(100vh - 80px);
         }
 
         .projects-section.active {
-            display: flex;
-            flex-direction: column;
+            display: block;
             opacity: 1;
             transform: translateY(0);
         }
@@ -403,10 +401,9 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 2rem;
+            margin-bottom: 4rem;
             border-bottom: 2px solid var(--text);
-            padding-bottom: 1rem;
-            flex-shrink: 0;
+            padding-bottom: 2rem;
         }
 
         .section-title {
@@ -435,8 +432,6 @@
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
             gap: 3rem;
-            flex: 1;
-            align-content: start;
         }
 
         .project-card {
@@ -538,7 +533,7 @@
         }
 
         .page.hidden {
-            display: none;
+            display: none !important;
         }
     </style>
 </head>
@@ -720,20 +715,31 @@
     </div>
 
     <script>
-        // Pixelate image
+        // Animated Pixelation
         const originalImage = document.getElementById('originalImage');
         const canvas = document.getElementById('pixelCanvas');
         const ctx = canvas.getContext('2d');
+        let basePixelSize = 16; // More pixelated
+        let time = 0;
 
         originalImage.onload = function() {
-            const pixelSize = 8; // Adjust for more/less pixelation
+            canvas.width = originalImage.width;
+            canvas.height = originalImage.height;
+            animatePixelation();
+        };
+
+        function animatePixelation() {
+            time += 0.05;
             const w = originalImage.width;
             const h = originalImage.height;
 
-            canvas.width = w;
-            canvas.height = h;
+            // Oscillating pixel size for animation
+            const pixelSize = basePixelSize + Math.sin(time) * 4;
 
-            // Draw small version
+            // Clear and draw
+            ctx.clearRect(0, 0, w, h);
+
+            // Draw small version then scale up
             const smallW = Math.ceil(w / pixelSize);
             const smallH = Math.ceil(h / pixelSize);
 
@@ -741,20 +747,37 @@
             ctx.drawImage(originalImage, 0, 0, smallW, smallH);
             ctx.drawImage(canvas, 0, 0, smallW, smallH, 0, 0, w, h);
 
-            // Convert to grayscale
+            // Convert to grayscale with glitch offset
             const imageData = ctx.getImageData(0, 0, w, h);
             const data = imageData.data;
 
-            for (let i = 0; i < data.length; i += 4) {
-                const gray = data[i] * 0.299 + data[i + 1] * 0.587 + data[i + 2] * 0.114;
-                // Increase contrast
-                const contrast = 1.3;
-                const adjusted = ((gray - 128) * contrast) + 128;
-                data[i] = data[i + 1] = data[i + 2] = adjusted;
+            // Random glitch lines
+            const glitchY = Math.random() > 0.95 ? Math.floor(Math.random() * h) : -1;
+            const glitchOffset = Math.floor(Math.random() * 20) - 10;
+
+            for (let y = 0; y < h; y++) {
+                for (let x = 0; x < w; x++) {
+                    let srcX = x;
+
+                    // Apply glitch offset to random lines
+                    if (Math.abs(y - glitchY) < 5) {
+                        srcX = Math.max(0, Math.min(w - 1, x + glitchOffset));
+                    }
+
+                    const i = (y * w + x) * 4;
+                    const srcI = (y * w + srcX) * 4;
+
+                    const gray = data[srcI] * 0.299 + data[srcI + 1] * 0.587 + data[srcI + 2] * 0.114;
+                    const contrast = 1.4;
+                    const adjusted = Math.max(0, Math.min(255, ((gray - 128) * contrast) + 128));
+
+                    data[i] = data[i + 1] = data[i + 2] = adjusted;
+                }
             }
 
             ctx.putImageData(imageData, 0, 0);
-        };
+            requestAnimationFrame(animatePixelation);
+        }
 
         // Projects data structure - add your projects here
         const projectsData = {
