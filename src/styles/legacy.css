@@ -2249,7 +2249,9 @@ nav > .nav-links { justify-self: end; }
         flex-direction: column;
         align-items: center;
         justify-content: flex-start;
-        gap: clamp(2.5rem, 7vh, 4rem);
+        /* extra gap: the Yama figure overhangs above the wheel box and would
+           otherwise collide with the meta text directly above it */
+        gap: clamp(5rem, 13vh, 8rem);
     }
     .hero-intro-col {
         position: static;
@@ -2643,17 +2645,17 @@ nav > .nav-links { justify-self: end; }
 /* responsive */
 @media (max-width: 760px) {
     .rl-art      { transform: translate(-50%, -50%) translate(0, -30vw); }
-    .rl-software { transform: translate(-50%, -50%) translate(26vw, -15vw); }
-    .rl-research { transform: translate(-50%, -50%) translate(26vw, 15vw); }
+    .rl-software { transform: translate(-50%, -50%) translate(22vw, -15vw); }
+    .rl-research { transform: translate(-50%, -50%) translate(22vw, 15vw); }
     .rl-diary    { transform: translate(-50%, -50%) translate(0, 30vw); }
-    .rl-pixels   { transform: translate(-50%, -50%) translate(-26vw, 15vw); }
-    .rl-sayhi    { transform: translate(-50%, -50%) translate(-26vw, -15vw); }
+    .rl-pixels   { transform: translate(-50%, -50%) translate(-22vw, 15vw); }
+    .rl-sayhi    { transform: translate(-50%, -50%) translate(-22vw, -15vw); }
     .rl-art:hover      { transform: translate(-50%, -50%) translate(0, -32vw) scale(1.05); }
-    .rl-software:hover { transform: translate(-50%, -50%) translate(28vw, -17vw) scale(1.05); }
-    .rl-research:hover { transform: translate(-50%, -50%) translate(28vw, 17vw) scale(1.05); }
+    .rl-software:hover { transform: translate(-50%, -50%) translate(24vw, -17vw) scale(1.05); }
+    .rl-research:hover { transform: translate(-50%, -50%) translate(24vw, 17vw) scale(1.05); }
     .rl-diary:hover    { transform: translate(-50%, -50%) translate(0, 32vw) scale(1.05); }
-    .rl-pixels:hover   { transform: translate(-50%, -50%) translate(-28vw, 17vw) scale(1.05); }
-    .rl-sayhi:hover    { transform: translate(-50%, -50%) translate(-28vw, -17vw) scale(1.05); }
+    .rl-pixels:hover   { transform: translate(-50%, -50%) translate(-24vw, 17vw) scale(1.05); }
+    .rl-sayhi:hover    { transform: translate(-50%, -50%) translate(-24vw, -17vw) scale(1.05); }
 
     .realm-link { width: 90px; }
     .realm-link .r-name { font-size: 1rem; }
@@ -2662,4 +2664,13 @@ nav > .nav-links { justify-self: end; }
     .wl-tib { font-size: 0.88rem; }
     .wl-rom { font-size: 0.52rem; }
     .wheel-foot { margin-top: 3rem; }
+    /* Pull Yama's overhang in so the figure crowns the wheel without reaching
+       up into the meta text above. animation:none so this transform sticks
+       (the yamaFade keyframe's forwards-fill would otherwise restore -8.4cqw). */
+    .yama-img {
+        width: 100%;
+        transform: translate(-50%, -50%) translate(0, -2cqw);
+        animation: none;
+        opacity: 1;
+    }
 }
