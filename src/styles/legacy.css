@@ -2226,11 +2226,47 @@ nav > .nav-links { justify-self: end; }
     line-height: 1.35;
     color: var(--ink-dim);
 }
-@media (max-width: 760px) {
-    /* No room for the top-right thangka accent beside a full-width heading on a
-       phone — it overlapped the title. Hide the decorative accent on mobile;
-       the wheel + portrait carry the hero. (Favicon still uses thangka.png.) */
-    .hero-thangka { display: none; }
+/* ============================================================================
+   MOBILE HERO — one authoritative block (overrides the desktop absolute layout)
+   Phones get a simple vertical stack: thangka, title/lede/meta, then the wheel.
+   ============================================================================ */
+@media (max-width: 768px) {
+    .hero {
+        padding: clamp(7rem, 16vh, 9rem) 1.25rem 2.5rem;
+        min-height: auto;
+        align-items: center;
+    }
+    /* thangka restored — small, centered, in normal flow at the top */
+    .hero-thangka {
+        display: block;
+        position: static;
+        top: auto; right: auto;
+        width: clamp(104px, 32vw, 150px);
+        margin: 0 auto 1.75rem;
+    }
+    /* intro + wheel stack vertically with breathing room (no overlap) */
+    .hero-split {
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        gap: clamp(2.5rem, 7vh, 4rem);
+    }
+    .hero-intro-col {
+        position: static;
+        width: 100%;
+        max-width: 40ch;
+        margin: 0;
+        text-align: left;
+        align-items: flex-start;
+        pointer-events: auto;     /* nothing sits behind it on mobile */
+    }
+    .hi-title { font-size: clamp(2.9rem, 13vw, 4rem); }
+    .wheel-wrap {
+        width: min(86vw, 380px);
+        margin: 0 auto;
+    }
+    /* corner ornaments add clutter on a small screen */
+    .ornament { display: none; }
 }
 
 /* ===== the wheel ===== */
