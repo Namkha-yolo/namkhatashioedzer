@@ -2652,8 +2652,9 @@ nav > .nav-links { justify-self: end; }
     .realm-link { width: 90px; }
     .realm-link .r-name { font-size: 1rem; }
     .realm-link .r-tib { font-size: 0.65rem; }
-    .wheel-label { top: -3.4rem; bottom: auto; }
-    .wl-tib { font-size: 0.88rem; }
-    .wl-rom { font-size: 0.52rem; }
+    /* The Yama wraps the wheel on all sides, so this caption has no clean spot
+       near it and overlapped Yama's head. Hide on mobile — the thangka caption
+       up top ("outside the wheel of existence") already covers it. */
+    .wheel-label { display: none; }
     .wheel-foot { margin-top: 3rem; }
 }
