@@ -27,7 +27,18 @@ const captions: Record<number, Omit<ArtPiece, 'src'>> = {
   5: { title: 'Uma', description: 'longing and being longed for', year: "20?"},
   6: { title: '???', description: 'dont remember doing this but definitely is mine', year: '20?'},
   7: { title: 'Vimalamitra', description: 'one and only', year: '20?'},
-  8: { title: 'KiKiSoSo', description: 'may goodness be forever victorious', year: '20?'}
+  8: { title: 'Ling Gesar', description: 'KiKi SoSo LhagyalOO', year: '20?'},
+  9: { title: 'Pedgyal Lingpa', description: "meymeys lama", year: '20?'},
+  10: { title: 'Pedays eyes', description: 'eyes blue like the atlantic', year: '20?'},
+  11: { title: 'INC', description: 'incomplete like my goals ya', year: '20?'},
+  12: { title: 'StonyBrook Art Exhibition', description: 'what i submitted for art quiz, ~ "what is in your head"', year: '2020'},
+  13: { title: 'Garuda', description: 'my favorite bird ', year: '20?'},
+  14: { title: 'Garuda', description: 'my favorite bird ', year: '20?'},
+  15: { title: 'For uncle lama', description: 'a logo i made that intended personell did not use', year: '20?'},
+  16: { title: 'For uncle not lama', description: 'a logo i made that intended personell did not use', year: '20?'},
+  17: { title: 'Kunkhyen Rinpoches Seal', description: 'Longchen Rabjam Zangpos Vajra Seal', year: '20?'},
+  18: { title: 'PemPems beautiful fingers', description: 'yup, i asked her to hand-model for me', year: '20?'},
+  19: { title: 'StonyBrook Art presentation', description: '"what is happiness to you?"', year: '2020'},
   // add more like: 12: { title: 'thangka study', description: 'gouache + gold.', year: '2024' },
 }
 

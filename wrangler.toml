@@ -10,4 +10,4 @@ pages_build_output_dir = "dist"
 [[d1_databases]]
 binding = "DB"
 database_name = "namkha-guestbook"
-database_id = "REPLACE_WITH_ID_FROM_d1_create"
+database_id = "5bfe8330-a8bc-4bcf-9e61-84e52718d96d"
