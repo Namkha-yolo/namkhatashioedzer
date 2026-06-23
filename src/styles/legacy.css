@@ -2011,6 +2011,15 @@ nav > .nav-links { justify-self: end; }
     overflow: visible;
     gap: 0;
 }
+/* On mobile the intro column returns to normal flow (see .hero-intro-col below),
+   so the large desktop top padding — sized to clear the absolutely-positioned
+   intro — just leaves a big empty gap. Pull it down to merely clear the nav. */
+@media (max-width: 960px) {
+    .hero {
+        padding-top: clamp(6rem, 14vh, 8.5rem);
+        min-height: auto;
+    }
+}
 
 /* the 2-column layout — now the wheel centers freely; intro is absolute (see below) */
 .hero-split {
@@ -2143,12 +2152,16 @@ nav > .nav-links { justify-self: end; }
     border-color: var(--saffron);
 }
 
-/* ── responsive: stack on narrow viewports ── */
+/* ── responsive: stack on narrow viewports ──
+   .hero-split is a flexbox, so the previous grid-template-columns had no
+   effect and the intro + wheel stayed jammed side-by-side. Switch the flex
+   direction to actually stack them, intro on top, wheel below. */
 @media (max-width: 960px) {
     .hero-split {
-        grid-template-columns: 1fr;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
         gap: clamp(2rem, 6vh, 4rem);
-        justify-items: center;
     }
     .hero-intro-col {
         max-width: 48ch;
