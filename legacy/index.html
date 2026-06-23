@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NAMKHA · ནམ་མཁའ་ — sky / workshop / diary</title>
+    <meta name="description" content="a workshop and diary at the seam of code, script, and sky">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif+Tibetan:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css?v=20260608f">
+</head>
+<body>
+    <!-- Generative Mandala Background — slow-rotating prayer-wheel of layers -->
+    <div class="mandala-bg" aria-hidden="true">
+      <svg viewBox="-300 -300 600 600" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <path id="petal-out" d="M0,-220 Q14,-200 18,-170 Q10,-145 0,-138 Q-10,-145 -18,-170 Q-14,-200 0,-220 Z" />
+          <path id="petal-in"  d="M0,-150 Q8,-138 11,-125 Q6,-115 0,-110 Q-6,-115 -11,-125 Q-8,-138 0,-150 Z" />
+          <path id="flame"     d="M0,-285 Q4,-265 0,-250 Q-4,-265 0,-285 Z" />
+          <path id="gate"      d="M-22,-110 L22,-110 L22,-130 L44,-130 L44,-95 L-44,-95 L-44,-130 L-22,-130 Z" />
+        </defs>
+        <!-- L5 — outer cosmic ring of flames (32) -->
+        <g class="m-layer l5" fill="#d4843a" opacity="0.45">
+          <use href="#flame" /><use href="#flame" transform="rotate(11.25)"/>
+          <use href="#flame" transform="rotate(22.5)"/><use href="#flame" transform="rotate(33.75)"/>
+          <use href="#flame" transform="rotate(45)"/><use href="#flame" transform="rotate(56.25)"/>
+          <use href="#flame" transform="rotate(67.5)"/><use href="#flame" transform="rotate(78.75)"/>
+          <use href="#flame" transform="rotate(90)"/><use href="#flame" transform="rotate(101.25)"/>
+          <use href="#flame" transform="rotate(112.5)"/><use href="#flame" transform="rotate(123.75)"/>
+          <use href="#flame" transform="rotate(135)"/><use href="#flame" transform="rotate(146.25)"/>
+          <use href="#flame" transform="rotate(157.5)"/><use href="#flame" transform="rotate(168.75)"/>
+          <use href="#flame" transform="rotate(180)"/><use href="#flame" transform="rotate(191.25)"/>
+          <use href="#flame" transform="rotate(202.5)"/><use href="#flame" transform="rotate(213.75)"/>
+          <use href="#flame" transform="rotate(225)"/><use href="#flame" transform="rotate(236.25)"/>
+          <use href="#flame" transform="rotate(247.5)"/><use href="#flame" transform="rotate(258.75)"/>
+          <use href="#flame" transform="rotate(270)"/><use href="#flame" transform="rotate(281.25)"/>
+          <use href="#flame" transform="rotate(292.5)"/><use href="#flame" transform="rotate(303.75)"/>
+          <use href="#flame" transform="rotate(315)"/><use href="#flame" transform="rotate(326.25)"/>
+          <use href="#flame" transform="rotate(337.5)"/><use href="#flame" transform="rotate(348.75)"/>
+          <circle r="262" fill="none" stroke="#d4843a" stroke-width="0.5" stroke-dasharray="2,4" opacity="0.7"/>
+        </g>
+        <!-- L1 — outer 16-petal lotus -->
+        <g class="m-layer l1" fill="none" stroke="#b8923e" stroke-width="0.9" opacity="0.55">
+          <use href="#petal-out" />
+          <use href="#petal-out" transform="rotate(22.5)"/>
+          <use href="#petal-out" transform="rotate(45)"/>
+          <use href="#petal-out" transform="rotate(67.5)"/>
+          <use href="#petal-out" transform="rotate(90)"/>
+          <use href="#petal-out" transform="rotate(112.5)"/>
+          <use href="#petal-out" transform="rotate(135)"/>
+          <use href="#petal-out" transform="rotate(157.5)"/>
+          <use href="#petal-out" transform="rotate(180)"/>
+          <use href="#petal-out" transform="rotate(202.5)"/>
+          <use href="#petal-out" transform="rotate(225)"/>
+          <use href="#petal-out" transform="rotate(247.5)"/>
+          <use href="#petal-out" transform="rotate(270)"/>
+          <use href="#petal-out" transform="rotate(292.5)"/>
+          <use href="#petal-out" transform="rotate(315)"/>
+          <use href="#petal-out" transform="rotate(337.5)"/>
+          <circle r="200" fill="none" stroke="#b8923e" stroke-width="0.4" opacity="0.6"/>
+        </g>
+        <!-- L2 — square palace with 4 cardinal gates -->
+        <g class="m-layer l2" fill="none" stroke="#c14430" stroke-width="0.8" opacity="0.45">
+          <rect x="-110" y="-110" width="220" height="220" />
+          <rect x="-125" y="-125" width="250" height="250" stroke-dasharray="3,3" opacity="0.5"/>
+          <use href="#gate" />
+          <use href="#gate" transform="rotate(90)"/>
+          <use href="#gate" transform="rotate(180)"/>
+          <use href="#gate" transform="rotate(270)"/>
+        </g>
+        <!-- L3 — inner 8-petal lotus (saffron filled) -->
+        <g class="m-layer l3" fill="#d4843a" opacity="0.22">
+          <use href="#petal-in" />
+          <use href="#petal-in" transform="rotate(45)"/>
+          <use href="#petal-in" transform="rotate(90)"/>
+          <use href="#petal-in" transform="rotate(135)"/>
+          <use href="#petal-in" transform="rotate(180)"/>
+          <use href="#petal-in" transform="rotate(225)"/>
+          <use href="#petal-in" transform="rotate(270)"/>
+          <use href="#petal-in" transform="rotate(315)"/>
+        </g>
+        <!-- L4 — dorje cross + bindu (center jewel) -->
+        <g class="m-layer l4" fill="none" stroke="#3a5a8a" stroke-width="1" opacity="0.55">
+          <line x1="-95" y1="0" x2="95" y2="0"/>
+          <line x1="0" y1="-95" x2="0" y2="95"/>
+          <line x1="-67" y1="-67" x2="67" y2="67"/>
+          <line x1="-67" y1="67"  x2="67" y2="-67"/>
+          <circle r="55" stroke="#b8923e" stroke-width="0.8"/>
+          <circle r="38" stroke="#3a5a8a" stroke-width="0.6"/>
+          <circle r="22" stroke="#c14430" fill="#c14430" fill-opacity="0.18"/>
+          <circle r="6"  fill="#d4ad5a" stroke="none"/>
+        </g>
+      </svg>
+    </div>
+
+    <!-- Soft dusk wash — single gentle warm gradient -->
+    <div class="dusk-wash" aria-hidden="true"></div>
+
+    <!-- Paper grain — subtle SVG noise, fixed overlay -->
+    <svg class="paper-grain" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+      <filter id="paperNoise">
+        <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"/>
+        <feColorMatrix values="0 0 0 0 0.075
+                               0 0 0 0 0.066
+                               0 0 0 0 0.058
+                               0 0 0 0.55 0"/>
+      </filter>
+      <rect width="100%" height="100%" filter="url(#paperNoise)"/>
+    </svg>
+
+    <!-- Tibetan glyphs drifting in the right margin -->
+    <div class="tibetan-margin right" aria-hidden="true">
+      <div class="tibetan-margin-inner" id="tibetanMargin"></div>
+    </div>
+
+    <!-- Prayer wheel — keeps time alongside the hex counter -->
+    <div class="prayer-wheel" aria-hidden="true">
+      <svg viewBox="-20 -20 40 40">
+        <circle r="18" fill="none" stroke="#d4843a" stroke-width="0.8"/>
+        <circle r="15" fill="#1f1815" stroke="#b8923e" stroke-width="0.5"/>
+        <g stroke="#d4843a" stroke-width="0.6">
+          <line x1="0"     y1="-15"  x2="0"     y2="-18"/>
+          <line x1="10.6"  y1="-10.6" x2="12.7" y2="-12.7"/>
+          <line x1="15"    y1="0"    x2="18"    y2="0"/>
+          <line x1="10.6"  y1="10.6" x2="12.7"  y2="12.7"/>
+          <line x1="0"     y1="15"   x2="0"     y2="18"/>
+          <line x1="-10.6" y1="10.6" x2="-12.7" y2="12.7"/>
+          <line x1="-15"   y1="0"    x2="-18"   y2="0"/>
+          <line x1="-10.6" y1="-10.6" x2="-12.7" y2="-12.7"/>
+        </g>
+        <text x="0" y="3" font-family="Noto Serif Tibetan, serif" font-size="9" fill="#d4ad5a" text-anchor="middle">ༀ</text>
+      </svg>
+    </div>
+
+    <!-- Live clock -->
+    <div class="clock" id="liveClock">
+      <span class="tib">ས་</span><span id="clockTime">--<span class="sep">:</span>--<span class="sep">:</span>--</span>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <a class="logo" onclick="showHero();return false;" href="#">NAMKHA<span class="tib-mark">ནམ་མཁའ་</span></a>
+        <div class="nav-mid">
+            <span class="nav-clock" id="navClock">—:—:— —</span>
+        </div>
+        <div class="nav-links">
+            <a href="#" onclick="showSection('swe');return false;">WORK</a>
+            <a href="#" onclick="showSection('words');return false;">DIARY</a>
+            <a href="#" onclick="showSection('friends');return false;">FRIENDS</a>
+            <a href="#" onclick="showSection('guestbook');return false;">SIGN</a>
+        </div>
+    </nav>
+
+    <!-- Hero — dharmachakra radial nav -->
+    <section class="hero page" id="hero">
+        <!-- hand-drawn corner ornaments -->
+        <svg class="ornament o-tl" viewBox="0 0 120 120" aria-hidden="true">
+            <!-- distant mountain peaks -->
+            <path d="M 8 88 L 30 52 L 44 68 L 58 36 L 78 60 L 92 44 L 112 78 L 112 92 L 8 92 Z" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
+            <path d="M 30 52 L 30 56 M 58 36 L 58 40 M 92 44 L 92 48" stroke="currentColor" stroke-width="0.8"/>
+        </svg>
+        <svg class="ornament o-tr" viewBox="0 0 120 120" aria-hidden="true">
+            <!-- drifting clouds -->
+            <path d="M 16 44 Q 12 38 22 36 Q 22 28 34 30 Q 38 22 52 26 Q 60 24 64 32 Q 76 30 76 40 Q 72 46 64 44 Q 56 50 46 46 Q 36 50 28 46 Q 18 50 16 44 Z" fill="none" stroke="currentColor" stroke-width="1.2"/>
+            <path d="M 56 76 Q 52 70 62 68 Q 64 60 76 62 Q 82 56 92 60 Q 100 60 100 68 Q 96 74 88 72 Q 80 76 72 74 Q 62 78 56 76 Z" fill="none" stroke="currentColor" stroke-width="1.2"/>
+        </svg>
+        <svg class="ornament o-bl" viewBox="0 0 120 120" aria-hidden="true">
+            <!-- flame -->
+            <path d="M 60 100 Q 30 78 38 50 Q 44 56 50 52 Q 46 36 56 22 Q 60 36 70 38 Q 66 28 78 18 Q 80 38 88 50 Q 96 78 60 100 Z" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
+            <path d="M 60 80 Q 52 70 56 58 Q 60 64 64 60 Q 62 50 68 42 Q 70 58 64 70 Q 64 78 60 80 Z" fill="none" stroke="currentColor" stroke-width="0.8"/>
+        </svg>
+        <svg class="ornament o-br" viewBox="0 0 120 120" aria-hidden="true">
+            <!-- endless knot (palbeu) -->
+            <path d="M 60 20 L 96 60 L 60 100 L 24 60 Z M 36 36 L 84 84 M 84 36 L 36 84 M 60 32 L 60 88 M 32 60 L 88 60" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+
+        <div class="hero-split">
+        <!-- ──────────── LEFT: write/replace your intro here ──────────── -->
+        <div class="hero-intro-col">
+            <div class="hi-eyebrow">
+                <span>NAMKHA</span>
+                <span class="hi-dot">·</span>
+                <span class="tib">ནམ་མཁའ་</span>
+            </div>
+            <h1 class="hi-title">
+                a workshop<br/>
+                <em>&amp; diary</em><br/>
+                at the seam.
+            </h1>
+            <p class="hi-lede">
+                code, script, and sky. tibetan keyboards, small models,
+                slow files — kept open like a thangka.
+            </p>
+            <div class="hi-meta">
+                <span class="hi-meta-line">
+                    <span class="hi-meta-key">now</span>
+                    <span class="hi-meta-val">building <em>Lotsawa v2</em></span>
+                </span>
+                <span class="hi-meta-line">
+                    <span class="hi-meta-key">reading</span>
+                    <span class="hi-meta-val">the hidden lamp</span>
+                </span>
+                <span class="hi-meta-line">
+                    <span class="hi-meta-key">mfg</span>
+                    <span class="hi-meta-val">2002</span>
+                </span>
+                <span class="hi-meta-line">
+                    <span class="hi-meta-key">exp</span>
+                    <span class="hi-meta-val">tbd soon</span>
+                </span>
+            </div>
+        </div>
+        <!-- ──────────── RIGHT: the wheel ──────────── -->
+        <div class="wheel-wrap">
+            <!-- Yama — the wrathful figure holding the wheel (vector traced from your image) -->
+            <img class="yama-img" src="yama-traced.svg" alt="" aria-hidden="true">
+
+
+            <!-- Wheel of Life (Bhavachakra) — 6 realms around a hub, with karma ring -->
+            <svg class="wheel-ring" viewBox="-350 -350 700 700" aria-hidden="true">
+                <!-- Wheel outer boundary (the inner of the original two rings — the one to keep) -->
+                <circle r="295" fill="none" stroke="currentColor" stroke-width="2"/>
+
+                <!-- 6 realm wedges (original size, outer at r=295) -->
+                <g class="realms">
+                    <path class="realm r-art"      d="M -70 -121.2 L -147.5 -255.5 A 295 295 0 0 1 147.5 -255.5 L 70 -121.2 A 140 140 0 0 0 -70 -121.2 Z"/>
+                    <path class="realm r-software" d="M 70 -121.2 L 147.5 -255.5 A 295 295 0 0 1 295 0 L 140 0 A 140 140 0 0 0 70 -121.2 Z"/>
+                    <path class="realm r-research" d="M 140 0 L 295 0 A 295 295 0 0 1 147.5 255.5 L 70 121.2 A 140 140 0 0 0 140 0 Z"/>
+                    <path class="realm r-diary"    d="M 70 121.2 L 147.5 255.5 A 295 295 0 0 1 -147.5 255.5 L -70 121.2 A 140 140 0 0 0 70 121.2 Z"/>
+                    <path class="realm r-pixels"   d="M -70 121.2 L -147.5 255.5 A 295 295 0 0 1 -295 0 L -140 0 A 140 140 0 0 0 -70 121.2 Z"/>
+                    <path class="realm r-sayhi"    d="M -140 0 L -295 0 A 295 295 0 0 1 -147.5 -255.5 L -70 -121.2 A 140 140 0 0 0 -140 0 Z"/>
+                </g>
+
+                <!-- Wedge boundary spokes — touch the hub at r=102 and reach the outer ring at r=295 -->
+                <g stroke="var(--ink)" stroke-width="1.6" fill="none">
+                    <line x1="-51" y1="-88.33" x2="-147.5" y2="-255.5"/>
+                    <line x1="51"  y1="-88.33" x2="147.5"  y2="-255.5"/>
+                    <line x1="102" y1="0"      x2="295"    y2="0"/>
+                    <line x1="51"  y1="88.33"  x2="147.5"  y2="255.5"/>
+                    <line x1="-51" y1="88.33"  x2="-147.5" y2="255.5"/>
+                    <line x1="-102" y1="0"     x2="-295"   y2="0"/>
+                </g>
+
+                <!-- Hub outer ring -->
+                <circle r="102" fill="none" stroke="var(--ink)" stroke-width="1.5"/>
+                <circle r="98" fill="var(--paper)" stroke="none"/>
+            </svg>
+
+            <!-- 6 realm labels (HTML overlays) -->
+            <a class="realm-link rl-art"      data-category="art"       href="#"><span class="r-name">art</span></a>
+            <a class="realm-link rl-software" data-category="swe"       href="#"><span class="r-name">software</span></a>
+            <a class="realm-link rl-research" data-category="ai"        href="#"><span class="r-name">research</span></a>
+            <a class="realm-link rl-diary"    data-category="words"     href="#"><span class="r-name">diary</span></a>
+            <a class="realm-link rl-pixels"   data-category="fashion"   href="#"><span class="r-name">pixels</span></a>
+            <a class="realm-link rl-sayhi"    data-category="guestbook" href="#"><span class="r-name">say hi</span></a>
+
+            <!-- hub: portrait only, fills the wheel's eye -->
+            <figure class="hub">
+                <img src="profile.png" alt="portrait of namkha">
+            </figure>
+
+            <!-- Caption naming what it is -->
+            <div class="wheel-label">
+                <span class="wl-tib">སྲིད་པའི་འཁོར་ལོ</span>
+                <span class="wl-rom">the wheel of existence</span>
+            </div>
+        </div>
+        </div><!-- /.hero-split -->
+
+        <footer class="hero-colophon">
+            <div class="cf-left">
+                <span class="cf-name">NAMKHA <span class="tib">ནམ་མཁའ་</span></span>
+                <span class="cf-dot">·</span>
+                <span class="cf-est">MFG 2002</span>
+                <span class="cf-dot">·</span>
+                <span class="cf-est">EXP TBD SOON</span>
+            </div>
+            <div class="cf-right">
+                <span class="tib">བཀྲ་ཤིས་བདེ་ལེགས།</span>
+                <span>tashi delek</span>
+            </div>
+        </footer>
+    </section>
+
+    <!-- Demo Panel -->
+    <div class="demo-panel" id="demo-panel">
+        <div class="demo-content" id="demo-content">
+            <div class="demo-placeholder">
+                <span>&gt; SELECT_TARGET</span>
+                <p>click on a project to view intel</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Project Sections -->
+    <section class="projects-section" id="swe-section" data-section="swe">
+        <div class="section-header">
+            <h1 class="section-title">SWE</h1>
+            <button class="back-btn" onclick="showHero()">← return</button>
+        </div>
+        <div class="projects-list" id="swe-projects">
+            <div class="empty-state">
+                <h3>Projects Coming Soon</h3>
+                <p>Software engineering projects will be displayed here.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="projects-section" id="cybersecurity-section" data-section="cybersecurity">
+        <div class="section-header">
+            <h1 class="section-title">CYBERSECURITY</h1>
+            <button class="back-btn" onclick="showHero()">← return</button>
+        </div>
+        <div class="projects-list" id="cybersecurity-projects">
+            <div class="empty-state">
+                <h3>Projects Coming Soon</h3>
+                <p>Cybersecurity projects will be displayed here.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="projects-section" id="ai-section" data-section="ai">
+        <div class="section-header">
+            <h1 class="section-title">AI</h1>
+            <button class="back-btn" onclick="showHero()">← return</button>
+        </div>
+        <div class="projects-list" id="ai-projects">
+            <div class="empty-state">
+                <h3>Projects Coming Soon</h3>
+                <p>AI projects will be displayed here.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="projects-section" id="fashion-section" data-section="fashion">
+        <div class="section-header">
+            <h1 class="section-title">FASHION</h1>
+            <button class="back-btn" onclick="showHero()">← return</button>
+        </div>
+        <div class="projects-list" id="fashion-projects">
+            <div class="empty-state">
+                <h3>Projects Coming Soon</h3>
+                <p>Fashion projects will be displayed here.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="projects-section" id="music-section" data-section="music">
+        <div class="section-header">
+            <h1 class="section-title">MUSIC</h1>
+            <button class="back-btn" onclick="showHero()">← return</button>
+        </div>
+        <div class="projects-list" id="music-projects">
+            <div class="empty-state">
+                <h3>Projects Coming Soon</h3>
+                <p>Music projects will be displayed here.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="projects-section" id="art-section" data-section="art">
+        <div class="section-header">
+            <h1 class="section-title">ART</h1>
+            <button class="back-btn" onclick="showHero()">← return</button>
+        </div>
+        <div class="projects-list" id="art-projects">
+            <div class="empty-state">
+                <h3>Projects Coming Soon</h3>
+                <p>Art projects will be displayed here.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== DIARY SECTIONS ===== -->
+
+    <!-- NOW — currently... -->
+    <section class="diary-section" id="now-section" data-section="now">
+        <div class="section-header">
+            <h1 class="section-title">now<span class="tib-sub">ད་ལྟ</span></h1>
+            <div style="display:flex;gap:1rem;align-items:baseline;">
+                <span class="section-subtitle">a moment in time <span class="dot">·</span> <span id="nowDate">—</span></span>
+                <button class="back-btn" onclick="showHero()">← return</button>
+            </div>
+        </div>
+        <div class="now-wrap">
+            <div class="now-line">
+                <span class="now-key">reading</span>
+                <span class="now-val"><span class="tib">གློག་</span><span class="accent">The Hidden Lamp</span>, alongside <em>Crafting Interpreters</em><span class="sub">stories of awakened women + a tree-walking interpreter, on alternating days</span></span>
+            </div>
+            <div class="now-line">
+                <span class="now-key">listening</span>
+                <span class="now-val">monastery chants from <span class="accent">Gyutö</span> + a half-finished beat tape<span class="sub">low end heavy, slow breath</span></span>
+            </div>
+            <div class="now-line">
+                <span class="now-key">building</span>
+                <span class="now-val">this <span class="accent">site</span>, and <em>Lotsawa</em> v2 — wider syllable window, learned ranker<span class="sub">≥ 80% auto-select confidence is the target</span></span>
+            </div>
+            <div class="now-line">
+                <span class="now-key">watching</span>
+                <span class="now-val">the <span class="accent">sky</span><span class="sub">that thin saffron line at the cloud-deck</span></span>
+            </div>
+            <div class="now-line">
+                <span class="now-key">thinking</span>
+                <span class="now-val">how to make the model smaller <em>and</em> kinder<span class="sub">distillation is easy; intention is hard</span></span>
+            </div>
+            <div class="now-line">
+                <span class="now-key">last touched</span>
+                <span class="now-val"><span id="lastTouched">—</span><span class="sub">this site is a slow file</span></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- WORDS — journal entries -->
+    <section class="diary-section" id="words-section" data-section="words">
+        <div class="section-header">
+            <h1 class="section-title">words<span class="tib-sub">ཡི་གེ</span></h1>
+            <div style="display:flex;gap:1rem;align-items:baseline;">
+                <span class="section-subtitle">journal <span class="dot">·</span> ongoing</span>
+                <button class="back-btn" onclick="showHero()">← return</button>
+            </div>
+        </div>
+        <div class="words-list">
+            <article class="word-entry">
+                <div class="word-date">2026 · 05 · 28<span class="moon">○</span> waning gibbous</div>
+                <h3 class="word-title"><span class="tib">ས་གཞི།</span>the ground</h3>
+                <p class="word-excerpt">Every morning a fresh empty file is the same as the empty sky over the same mountain. The cursor blinks where the wind would. I sit. I write a function. The function compiles. Nothing has happened. Everything has happened.</p>
+            </article>
+            <article class="word-entry">
+                <div class="word-date">2026 · 05 · 12<span class="moon">●</span> full moon</div>
+                <h3 class="word-title"><span class="tib">ཁ་མཐོས།</span>the keyboard remembers</h3>
+                <p class="word-excerpt">Working on Lotsawa: the trie matches in &lt; 100ms, which is faster than thought. Tibetan is read left-to-right but stacks vertically — each syllable a tiny vertical mandala. I'm teaching the phone to feel a shape my grandmother already knew.</p>
+            </article>
+            <article class="word-entry">
+                <div class="word-date">2026 · 04 · 22<span class="moon">◐</span> waxing crescent</div>
+                <h3 class="word-title"><span class="tib">རི་བོ།</span>small models, big mountains</h3>
+                <p class="word-excerpt">A 7B model on my laptop is enough — for most of what I actually need. The mountain doesn't get smaller when you finally see it clearly. The model doesn't get smaller when you finally know what to ask it. Local first. Quiet first. The cloud is far.</p>
+            </article>
+            <article class="word-entry">
+                <div class="word-date">2026 · 03 · 15<span class="moon">◑</span> last quarter</div>
+                <h3 class="word-title"><span class="tib">གསེར་སྐུད།</span>thread of gold</h3>
+                <p class="word-excerpt">Three things that look the same but aren't: a debug print, a prayer, a mantra. Each one repeats. Each one shapes the body around it. Try printing <code>state</code> a hundred times in a row and tell me you don't feel different at the end.</p>
+            </article>
+        </div>
+    </section>
+
+    <!-- TRACES — fragments grid -->
+    <section class="diary-section" id="traces-section" data-section="traces">
+        <div class="section-header">
+            <h1 class="section-title">traces<span class="tib-sub">རྗེས་ཤུལ</span></h1>
+            <div style="display:flex;gap:1rem;align-items:baseline;">
+                <span class="section-subtitle">fragments <span class="dot">·</span> collected</span>
+                <button class="back-btn" onclick="showHero()">← return</button>
+            </div>
+        </div>
+        <div class="traces-grid">
+            <div class="trace-card" style="animation-delay:.05s">
+                <div class="trace-kind quote">quote</div>
+                <div class="trace-meta"><span>Gendun Chophel</span><span>1947</span></div>
+                <p class="trace-body"><span class="tib">རིག་པའི་བུ་ཆུང་ཆགས་པའི་དབྱིངས་སུ་བརྒྱལ།</span>"The small child of awareness swoons in the sphere of desire." A line that has been writing itself into my head since I was seventeen.</p>
+            </div>
+            <div class="trace-card" style="animation-delay:.15s">
+                <div class="trace-kind code">code</div>
+                <div class="trace-meta"><span>lotsawa/trie.swift</span><span>L42</span></div>
+                <p class="trace-body">the moment a trie node falls into <code>self</code> and the recursion finds itself standing on its own shoulders — i think that's grace.</p>
+            </div>
+            <div class="trace-card" style="animation-delay:.25s">
+                <div class="trace-kind found">found</div>
+                <div class="trace-meta"><span>courtyard wall</span><span>03/2024</span></div>
+                <p class="trace-body"><span class="tib">འགྲོ་བ་མི་རྟག་པ།</span>chiseled into a stone that has outlasted every empire that pretended to outlast it. "beings are impermanent." carved by hand, painted in vermillion that has not faded.</p>
+            </div>
+            <div class="trace-card" style="animation-delay:.35s">
+                <div class="trace-kind dream">dream</div>
+                <div class="trace-meta"><span>05·02 · 04:17</span><span>logged</span></div>
+                <p class="trace-body">a stupa made entirely of <code>println!</code> statements, each one a different prayer. the compiler is the lama. it tells me the warnings are blessings. i am only frightened by the errors that pass silently.</p>
+            </div>
+            <div class="trace-card" style="animation-delay:.45s">
+                <div class="trace-kind quote">quote</div>
+                <div class="trace-meta"><span>Dilgo Khyentse</span><span>—</span></div>
+                <p class="trace-body">"Do not be a hindrance to others' practice. This is the entire teaching of all the Buddhas in one sentence." — i think about this every time i open a pull request.</p>
+            </div>
+            <div class="trace-card" style="animation-delay:.55s">
+                <div class="trace-kind image">image</div>
+                <div class="trace-meta"><span>thangka, 18th c.</span><span>tinted scan</span></div>
+                <p class="trace-body">a wrathful protector painted with pigments that are now illegal: orpiment, lapis ground from afghan stone, vermillion from cinnabar. the colors that were dangerous to make are the ones that lasted.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- TAPES — audio reels -->
+    <section class="diary-section" id="tapes-section" data-section="tapes">
+        <div class="section-header">
+            <h1 class="section-title">tapes<span class="tib-sub">སྒྲ</span></h1>
+            <div style="display:flex;gap:1rem;align-items:baseline;">
+                <span class="section-subtitle">audio <span class="dot">·</span> mixes &amp; finds</span>
+                <button class="back-btn" onclick="showHero()">← return</button>
+            </div>
+        </div>
+        <div class="tapes-list">
+            <div class="tape-item">
+                <div class="tape-reel"></div>
+                <div class="tape-info">
+                    <div class="tape-title"><span class="tib">དགུན་</span>winter, slow</div>
+                    <div class="tape-meta">ambient<span class="dot">·</span>field recordings<span class="dot">·</span>04·2026</div>
+                </div>
+                <div class="tape-duration">47:22</div>
+            </div>
+            <div class="tape-item">
+                <div class="tape-reel"></div>
+                <div class="tape-info">
+                    <div class="tape-title"><span class="tib">རྨི་ལམ།</span>transformer dreams</div>
+                    <div class="tape-meta">coding playlist<span class="dot">·</span>idm + dnb<span class="dot">·</span>updates monthly</div>
+                </div>
+                <div class="tape-duration">1:23:04</div>
+            </div>
+            <div class="tape-item">
+                <div class="tape-reel"></div>
+                <div class="tape-info">
+                    <div class="tape-title"><span class="tib">སྔགས།</span>drangsong</div>
+                    <div class="tape-meta">tibetan classical<span class="dot">·</span>my father's records<span class="dot">·</span>digitized</div>
+                </div>
+                <div class="tape-duration">38:11</div>
+            </div>
+            <div class="tape-item">
+                <div class="tape-reel"></div>
+                <div class="tape-info">
+                    <div class="tape-title"><span class="tib">བཀྲ་ཤིས།</span>tashi delek 808s</div>
+                    <div class="tape-meta">beat tape<span class="dot">·</span>unreleased<span class="dot">·</span>wip</div>
+                </div>
+                <div class="tape-duration">22:38</div>
+            </div>
+            <div class="tape-item">
+                <div class="tape-reel"></div>
+                <div class="tape-info">
+                    <div class="tape-title"><span class="tib">སྦྱར་</span>seam mix</div>
+                    <div class="tape-meta">sufi + drum &amp; bass<span class="dot">·</span>edge stitching<span class="dot">·</span>02·2026</div>
+                </div>
+                <div class="tape-duration">54:09</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FRIENDS — webring -->
+    <section class="diary-section" id="friends-section" data-section="friends">
+        <div class="section-header">
+            <h1 class="section-title">friends<span class="tib-sub">གྲོགས་པོ</span></h1>
+            <div style="display:flex;gap:1rem;align-items:baseline;">
+                <span class="section-subtitle">a webring of slow files</span>
+                <button class="back-btn" onclick="showHero()">← return</button>
+            </div>
+        </div>
+        <p class="friends-intro">sites I read like letters from across the mountain — handmade, slow, idiosyncratic. mostly small-web, indieweb, neocities folk. if you find me through them, leave a sign in the <a href="#" onclick="showSection('guestbook');return false;" class="diary-link" style="color:var(--saffron)">guestbook</a>.</p>
+        <div class="friends-grid">
+            <a class="friend" href="https://madqh.com" target="_blank" rel="noopener">
+                <div class="friend-button">MADQH·COM</div>
+                <div class="friend-info"><div class="f-name">lady of absolute space</div><div class="f-desc">words · traces · tapes · guestbook</div></div>
+            </a>
+            <a class="friend" href="https://maya.land" target="_blank" rel="noopener">
+                <div class="friend-button v2">MAYA·LAND</div>
+                <div class="friend-info"><div class="f-name">maya.land</div><div class="f-desc">tarot · perfume · the outerweb</div></div>
+            </a>
+            <a class="friend" href="https://ribo.zone" target="_blank" rel="noopener">
+                <div class="friend-button v3">RIBO·ZONE</div>
+                <div class="friend-info"><div class="f-name">RIBOSE</div><div class="f-desc">an exercise in writing things down</div></div>
+            </a>
+            <a class="friend" href="https://aditi.today" target="_blank" rel="noopener">
+                <div class="friend-button v2">ADITI·TODAY</div>
+                <div class="friend-info"><div class="f-name">aditi.today</div><div class="f-desc">year-anchored notes</div></div>
+            </a>
+            <a class="friend" href="https://32bit.cafe" target="_blank" rel="noopener">
+                <div class="friend-button">32·BIT·CAFE</div>
+                <div class="friend-info"><div class="f-name">32-bit cafe</div><div class="f-desc">personal web community</div></div>
+            </a>
+            <a class="friend" href="https://gossipsweb.net" target="_blank" rel="noopener">
+                <div class="friend-button v3">GOSSIPS·WEB</div>
+                <div class="friend-info"><div class="f-name">gossip's web</div><div class="f-desc">directory of handmade sites</div></div>
+            </a>
+            <a class="friend" href="#" onclick="return false">
+                <div class="friend-button v4">YOUR·SITE</div>
+                <div class="friend-info"><div class="f-name">— a slot —</div><div class="f-desc">leave a note in the guestbook to claim</div></div>
+            </a>
+        </div>
+    </section>
+
+    <!-- GUESTBOOK -->
+    <section class="diary-section" id="guestbook-section" data-section="guestbook">
+        <div class="section-header">
+            <h1 class="section-title">guestbook<span class="tib-sub">མིང་ཐོ</span></h1>
+            <div style="display:flex;gap:1rem;align-items:baseline;">
+                <span class="section-subtitle">leave a trace</span>
+                <button class="back-btn" onclick="showHero()">← return</button>
+            </div>
+        </div>
+        <div class="guestbook-wrap">
+            <div class="guestbook-entries" id="guestbookEntries">
+                <article class="gb-entry">
+                    <div class="gb-meta"><span class="gb-name">tenzin_</span><span class="gb-from">via twitter</span><span class="gb-date">05·24·2026</span></div>
+                    <p class="gb-body"><span class="tib">བཀྲ་ཤིས་</span>found this site through the Tibetan keyboard project — the mandala spinning behind everything got me. saved.</p>
+                </article>
+                <article class="gb-entry">
+                    <div class="gb-meta"><span class="gb-name">m. (lady)</span><span class="gb-from">madqh.com</span><span class="gb-date">05·19·2026</span></div>
+                    <p class="gb-body">hi from the absolute space. love the dusk palette. the prayer wheel in the corner made me smile :)</p>
+                </article>
+                <article class="gb-entry">
+                    <div class="gb-meta"><span class="gb-name">stranger</span><span class="gb-from">unknown</span><span class="gb-date">05·02·2026</span></div>
+                    <p class="gb-body">"do not be a hindrance to others' practice" — i'm stealing this for my own README.</p>
+                </article>
+                <article class="gb-entry">
+                    <div class="gb-meta"><span class="gb-name">ribosome</span><span class="gb-from">ribo.zone</span><span class="gb-date">04·30·2026</span></div>
+                    <p class="gb-body">webring me. the friends section is right. saw it. left a 88×31 in your direction.</p>
+                </article>
+            </div>
+            <form class="gb-form" id="gbForm" onsubmit="return submitGuestbook(event)">
+                <div class="gb-form-title">leave a sign</div>
+                <input type="text" name="name" id="gbName" placeholder="name or handle" required maxlength="40" />
+                <input type="text" name="from" id="gbFrom" placeholder="where from? (a site, a city, a planet)" maxlength="80" />
+                <textarea name="message" id="gbMessage" placeholder="a sentence is enough" required maxlength="500"></textarea>
+                <button type="submit">sign · the · book</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- HORIZON — distant Himalaya at hero/dusk -->
+    <div class="horizon" aria-hidden="true">
+      <svg viewBox="0 0 1200 220" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- drifting clouds (animated) -->
+        <g class="cloud-anim">
+          <ellipse class="cloud" cx="200" cy="40" rx="60" ry="8"/>
+          <ellipse class="cloud" cx="180" cy="50" rx="40" ry="6"/>
+        </g>
+        <g class="cloud-anim d2">
+          <ellipse class="cloud" cx="500" cy="22" rx="80" ry="9"/>
+        </g>
+        <g class="cloud-anim d3">
+          <ellipse class="cloud" cx="850" cy="55" rx="100" ry="11"/>
+          <ellipse class="cloud" cx="830" cy="68" rx="60" ry="7"/>
+        </g>
+        <!-- far ridge -->
+        <path class="m-far"  d="M 0,180 L 70,110 L 140,150 L 220,90 L 310,140 L 380,80 L 470,125 L 550,95 L 640,135 L 730,75 L 820,120 L 910,100 L 1000,140 L 1090,95 L 1200,130 L 1200,220 L 0,220 Z"/>
+        <!-- mid ridge -->
+        <path class="m-mid"  d="M 0,200 L 60,160 L 150,180 L 240,140 L 330,175 L 430,130 L 520,165 L 620,145 L 720,170 L 820,120 L 920,165 L 1020,135 L 1120,170 L 1200,150 L 1200,220 L 0,220 Z"/>
+        <!-- near ridge — darkest, closest -->
+        <path class="m-near" d="M 0,220 L 50,200 L 140,212 L 240,188 L 340,205 L 440,182 L 540,200 L 640,190 L 740,205 L 830,178 L 920,205 L 1020,185 L 1120,200 L 1200,195 L 1200,220 L 0,220 Z"/>
+      </svg>
+    </div>
+
+    <!-- Marquee -->
+    <div class="marquee-container">
+        <div class="marquee">
+            <span class="tibetan">རིག་པའི་བུ་ཆུང་ཆགས་པའི་དབྱིངས་སུ་བརྒྱལ།</span>
+            <span class="tibetan">འཇུར་བུའི་བློ་གྲོས་སྲིན་བུའི་བུ་གར་ལྷུངས།</span>
+            <span class="tibetan">སྲེད་པའི་རྣམ་རྟོག་ཐུར་དུ་དྲངས་གྱུར་པས།</span>
+            <span class="tibetan">དགའ་བའི་དེ་ཉིད་སྐྱེ་བོ་དག་གིས་ལྟོས།</span>
+            <span class="separator">|</span>
+            <span class="translation">The small child of awareness swoons in the sphere of desire; The tangled intellect falls into a wormhole. Drawing lustful thoughts down; O beings, see pleasure's true nature. ~Gedun Chophel</span>
+            <span class="separator">|</span>
+            <span class="tibetan">རིག་པའི་བུ་ཆུང་ཆགས་པའི་དབྱིངས་སུ་བརྒྱལ།</span>
+            <span class="tibetan">འཇུར་བུའི་བློ་གྲོས་སྲིན་བུའི་བུ་གར་ལྷུངས།</span>
+            <span class="tibetan">སྲེད་པའི་རྣམ་རྟོག་ཐུར་དུ་དྲངས་གྱུར་པས།</span>
+            <span class="tibetan">དགའ་བའི་དེ་ཉིད་སྐྱེ་བོ་དག་གིས་ལྟོས།</span>
+            <span class="separator">|</span>
+            <span class="translation">The small child of awareness swoons in the sphere of desire; The tangled intellect falls into a wormhole. Drawing lustful thoughts down; O beings, see pleasure's true nature. ~Gedun Chophel</span>
+            <span class="separator">|</span>
+        </div>
+    </div>
+
+    <script>
+    // ============================================================
+    // PROJECTS DATA
+    // ============================================================
+    const projectsData = {
+        swe: [
+            {
+                title: "OnlyWorks",
+                description: "Cross-platform Electron desktop app for productivity tracking. Built RESTful API with 60+ endpoints, batch processing pipeline with Redis handling 10,000+ daily captures, and Next.js marketing site with Stripe subscriptions.",
+                tags: ["Electron", "Node.js", "React", "Next.js", "Redis", "Supabase", "Stripe"],
+                demoUrl: "https://only-works.com"
+            },
+            {
+                title: "Lotsawa Keyboard",
+                description: "iOS Tibetan transliteration keyboard with 196K+ dictionary entries. Dual-mode system with n-gram disambiguation achieving >80% auto-selection confidence. Trie data structure for O(m) prefix matching in <100ms.",
+                tags: ["Swift", "SwiftUI", "SQLite", "Python", "iOS"]
+            },
+            {
+                title: "Rigden Studios E-commerce",
+                description: "Custom e-commerce platform handling 200+ monthly transactions with PCI-compliant Stripe integration. Increased conversion rate by 40%.",
+                tags: ["React", "Node.js", "Stripe", "MongoDB"]
+            },
+            {
+                title: "NYC DOT Traffic Analysis",
+                description: "Python tools for traffic data analysis processing 1M+ daily records. Automated reporting workflows reducing manual processing by 75%. Visualization dashboards with PostgreSQL.",
+                tags: ["Python", "PostgreSQL", "OpenData API", "Data Visualization"]
+            },
+            {
+                title: "Big Reuse Automation",
+                description: "Google Apps Script automation for email workflows and inventory tracking at non-profit. Saved 8 hours weekly across team. Trained 10+ non-technical staff on new tools.",
+                tags: ["Google Apps Script", "Automation", "Non-Profit"]
+            }
+        ],
+        cybersecurity: [
+            {
+                title: "OnlyWorks Security Architecture",
+                description: "Designed secure OAuth 2.0 authentication with Google/GitHub, JWT tokens, refresh token rotation, and role-based access control. Implemented Supabase Row-Level Security reducing unauthorized access to zero.",
+                tags: ["OAuth 2.0", "JWT", "RBAC", "Row-Level Security", "Supabase"]
+            },
+            {
+                title: "Apple Code Signing & Notarization",
+                description: "Achieved Apple notarization with code signing for macOS distribution. Configured secure GitHub Releases auto-update system with electron-updater.",
+                tags: ["Code Signing", "Apple Notarization", "Electron", "macOS Security"]
+            }
+        ],
+        ai: [
+            {
+                title: "OnlyWorks AI Analysis",
+                description: "Integrated Google Gemini AI for real-time productivity analysis achieving 95% accuracy. Built RAG pipeline with Pinecone vector DB for intelligent screenshot analysis.",
+                tags: ["Google Gemini", "RAG", "Pinecone", "Vector DB", "LangChain"]
+            },
+            {
+                title: "DFX RAG Chatbot",
+                description: "Built RAG chatbot using LangChain, OpenAI APIs, and Pinecone. Trained ML models achieving 92% accuracy on document classification. Optimized query response from 5s to 200ms through embedding caching.",
+                tags: ["LangChain", "OpenAI", "Pinecone", "FastAPI", "ML"]
+            },
+            {
+                title: "Platform OCR Pipeline",
+                description: "Implemented platform-specific OCR: macOS Vision Framework via Swift CLI and Tesseract.js for Windows/Linux. Dual-pipeline architecture serving 500+ professionals.",
+                tags: ["OCR", "Vision Framework", "Tesseract.js", "Swift", "Cross-Platform"]
+            }
+        ],
+        fashion: [],
+        music: [],
+        art: []
+    };
+
+    // ============================================================
+    // CUSTOM CURSOR
+    // ============================================================
+    const cursor = document.querySelector('.cursor');
+    let cursorX = 0, cursorY = 0;
+    let actualX = 0, actualY = 0;
+
+    document.addEventListener('mousemove', (e) => {
+        cursorX = e.clientX - 9;
+        cursorY = e.clientY - 9;
+    });
+
+    // Smooth cursor following
+    function updateCursor() {
+        actualX += (cursorX - actualX) * 0.15;
+        actualY += (cursorY - actualY) * 0.15;
+        cursor.style.left = actualX + 'px';
+        cursor.style.top = actualY + 'px';
+        requestAnimationFrame(updateCursor);
+    }
+    updateCursor();
+
+    document.querySelectorAll('a, button, .category, .project-card').forEach(el => {
+        el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+        el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+    });
+
+    // ============================================================
+    // CATEGORY NAVIGATION
+    // ============================================================
+    document.querySelectorAll('.category, .hero-menu .m, .index-tile, .spoke, .realm-link').forEach(el => {
+        el.addEventListener('click', (e) => {
+            e.preventDefault();
+            const categoryName = el.dataset.category;
+            if (categoryName) showSection(categoryName);
+        });
+    });
+
+    const DIARY_SECTIONS = ['now', 'words', 'traces', 'tapes', 'friends', 'guestbook'];
+
+    function showSection(categoryName) {
+        const isDiary = DIARY_SECTIONS.includes(categoryName);
+
+        const heroEl = document.getElementById('hero');
+        if (heroEl) heroEl.classList.add('hidden');
+
+        // hide all section types
+        document.querySelectorAll('.projects-section, .diary-section').forEach(s => {
+            s.classList.remove('active');
+        });
+
+        const demoPanel = document.getElementById('demo-panel');
+
+        if (isDiary) {
+            if (demoPanel) demoPanel.classList.remove('active');
+            const section = document.getElementById(`${categoryName}-section`);
+            setTimeout(() => {
+                if (section) section.classList.add('active');
+            }, 80);
+        } else {
+            if (demoPanel) demoPanel.classList.add('active');
+            resetDemoPanel();
+            const section = document.getElementById(`${categoryName}-section`);
+            setTimeout(() => {
+                if (!section) return;
+                section.classList.add('active');
+                renderProjects(categoryName);
+            }, 80);
+        }
+
+        window.scrollTo(0, 0);
+    }
+
+    function showHero() {
+        document.querySelectorAll('.projects-section, .diary-section').forEach(s => {
+            s.classList.remove('active');
+        });
+        const demoPanel = document.getElementById('demo-panel');
+        if (demoPanel) demoPanel.classList.remove('active');
+        const heroEl = document.getElementById('hero');
+        if (heroEl) heroEl.classList.remove('hidden');
+        window.scrollTo(0, 0);
+    }
+
+    // Deep-linking — read ?section= or #section on load
+    (function deeplink() {
+        const params = new URLSearchParams(window.location.search);
+        const initial = params.get('section') || window.location.hash.slice(1);
+        if (!initial) return;
+        const target = document.getElementById(`${initial}-section`);
+        if (target) {
+            setTimeout(() => showSection(initial), 350);
+        }
+    })();
+
+    function resetDemoPanel() {
+        document.getElementById('demo-content').innerHTML = `
+            <div class="demo-placeholder">
+                <span>—  a closer look</span>
+                <p>choose a piece to view it here</p>
+            </div>
+        `;
+    }
+
+    function showDemo(project) {
+        const demoContent = document.getElementById('demo-content');
+
+        if (project.demoUrl) {
+            demoContent.innerHTML = `<iframe src="${project.demoUrl}" allowfullscreen></iframe>`;
+        } else if (project.demoImage) {
+            demoContent.innerHTML = `<img src="${project.demoImage}" alt="${project.title}">`;
+        } else if (project.demoVideo) {
+            demoContent.innerHTML = `<video src="${project.demoVideo}" controls autoplay muted loop></video>`;
+        } else {
+            demoContent.innerHTML = `
+                <div class="demo-placeholder">
+                    <span>${project.title}</span>
+                    <p>a demo lives quietly, soon</p>
+                </div>
+            `;
+        }
+    }
+
+    function renderProjects(category) {
+        const container = document.getElementById(`${category}-projects`);
+        const projects = projectsData[category];
+
+        if (projects.length === 0) {
+            container.innerHTML = `
+                <div class="empty-state">
+                    <span class="es-mark">— ${getCategoryDescription(category).toLowerCase()} —</span>
+                    <h3>still gathering</h3>
+                    <p>this realm is open. work appears here in its own time.</p>
+                </div>
+            `;
+            return;
+        }
+
+        container.innerHTML = projects.map((project, index) => `
+            <div class="project-card" data-index="${index}" style="animation-delay: ${index * 0.1}s">
+                <div class="project-number">${String(index + 1).padStart(2, '0')}</div>
+                <div class="project-info">
+                    <h3 class="project-title">${project.title}</h3>
+                    <p class="project-desc">${project.description}</p>
+                    <div class="project-tags">
+                        ${project.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                    </div>
+                </div>
+            </div>
+        `).join('');
+
+        document.querySelectorAll('.project-card').forEach((el, idx) => {
+            el.addEventListener('click', () => {
+                document.querySelectorAll('.project-card').forEach(card => card.classList.remove('active'));
+                el.classList.add('active');
+                showDemo(projects[idx]);
+            });
+        });
+
+        if (projects.length > 0) {
+            const firstCard = container.querySelector('.project-card');
+            if (firstCard) {
+                firstCard.classList.add('active');
+                showDemo(projects[0]);
+            }
+        }
+    }
+
+    function getCategoryDescription(category) {
+        const descriptions = {
+            swe: 'Software Engineering',
+            cybersecurity: 'Cybersecurity',
+            ai: 'Artificial Intelligence',
+            fashion: 'Fashion',
+            music: 'Music',
+            art: 'Art'
+        };
+        return descriptions[category] || category;
+    }
+
+    // ============================================================
+    // KEYBOARD NAV — esc returns home
+    // ============================================================
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            showHero();
+        }
+    });
+
+    // ============================================================
+    // LIVE CLOCK — anchors the site to "now"
+    // ============================================================
+    function pad(n) { return String(n).padStart(2, '0'); }
+
+    function updateClock() {
+        const d = new Date();
+        const h = pad(d.getHours());
+        const m = pad(d.getMinutes());
+        const s = pad(d.getSeconds());
+        const hr12 = d.getHours() % 12 || 12;
+        const ampm = d.getHours() >= 12 ? 'PM' : 'AM';
+
+        const navClock = document.getElementById('navClock');
+        if (navClock) navClock.textContent = `${pad(hr12)}:${m}:${s} ${ampm}`;
+
+        const el = document.getElementById('clockTime');
+        if (el) el.innerHTML = `${h}<span class="sep">:</span>${m}<span class="sep">:</span>${s}`;
+
+        const nowDate = document.getElementById('nowDate');
+        if (nowDate) {
+            const opts = { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' };
+            nowDate.textContent = d.toLocaleDateString('en-US', opts).toLowerCase();
+        }
+
+        const lastTouched = document.getElementById('lastTouched');
+        if (lastTouched) {
+            const dStr = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+            lastTouched.textContent = `${dStr} · ${h}:${m} local`;
+        }
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // ============================================================
+    // TIBETAN MARGIN GLYPHS — drifting wind-blown letters
+    // ============================================================
+    const tibetanMargin = document.getElementById('tibetanMargin');
+    if (tibetanMargin) {
+        const tibLetters = 'ཀཁགངཅཆཇཉཏཐདནཔཕབམཙཚཛཝཞཟའཡརལཤསཧཨ';
+        let stream = '';
+        for (let i = 0; i < 260; i++) {
+            stream += tibLetters[Math.floor(Math.random() * tibLetters.length)];
+            if (i % 4 === 3) stream += ' ';
+        }
+        // duplicate for seamless vertical scroll loop
+        tibetanMargin.textContent = stream + stream;
+    }
+
+    // ============================================================
+    // SOURCE-TOGGLE — reveal the page bones as decorative layer
+    // ============================================================
+    (function setupSourceToggle() {
+        const btn = document.getElementById('sourceToggle');
+        const overlay = document.getElementById('sourceOverlay');
+        if (!btn || !overlay) return;
+
+        function escapeHTML(s) {
+            return s.replace(/[&<>]/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;' }[c]));
+        }
+        function highlight(html) {
+            return escapeHTML(html)
+                .replace(/(&lt;\/?)([a-zA-Z][a-zA-Z0-9-]*)/g, '$1<span class="src-tag">$2</span>')
+                .replace(/([a-zA-Z-]+)=(&quot;[^&]*?&quot;)/g, '<span class="src-attr">$1</span>=<span class="src-str">$2</span>')
+                .replace(/(&lt;!--[\s\S]*?--&gt;)/g, '<span class="src-com">$1</span>');
+        }
+
+        btn.classList.add('ready');
+        btn.addEventListener('click', () => {
+            const active = overlay.classList.toggle('active');
+            btn.classList.toggle('active', active);
+            if (active && !overlay.dataset.populated) {
+                // grab a trimmed snapshot of the body for visual texture
+                const raw = document.body.innerHTML.slice(0, 14000);
+                overlay.innerHTML = highlight(raw);
+                overlay.dataset.populated = '1';
+            }
+        });
+    })();
+
+    // ============================================================
+    // GUESTBOOK — client-side only, ephemeral on reload
+    // ============================================================
+    function escapeUserHTML(s) {
+        return s.replace(/[&<>"']/g, c => ({
+            '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;'
+        }[c]));
+    }
+
+    function submitGuestbook(e) {
+        e.preventDefault();
+        const name = document.getElementById('gbName').value.trim();
+        const from = (document.getElementById('gbFrom').value.trim() || 'unknown');
+        const msg = document.getElementById('gbMessage').value.trim();
+        if (!name || !msg) return false;
+
+        const entries = document.getElementById('guestbookEntries');
+        const article = document.createElement('article');
+        article.className = 'gb-entry';
+        const d = new Date();
+        const date = `${pad(d.getMonth()+1)}·${pad(d.getDate())}·${d.getFullYear()}`;
+        article.innerHTML = `
+            <div class="gb-meta">
+                <span class="gb-name">${escapeUserHTML(name)}</span>
+                <span class="gb-from">${escapeUserHTML(from)}</span>
+                <span class="gb-date">${date}</span>
+            </div>
+            <p class="gb-body">${escapeUserHTML(msg)}</p>
+        `;
+        entries.prepend(article);
+
+        // soft fade-in
+        article.style.opacity = '0';
+        requestAnimationFrame(() => {
+            article.style.transition = 'opacity 1s cubic-bezier(0.23,1,0.32,1)';
+            article.style.opacity = '1';
+        });
+
+        document.getElementById('gbForm').reset();
+        return false;
+    }
+    window.submitGuestbook = submitGuestbook;
+    window.showSection = showSection;
+    window.showHero = showHero;
+
+    // ============================================================
+    // SMOOTH PRAYER WHEEL — gentle scroll-coupled spin boost
+    // ============================================================
+    (function prayerScroll() {
+        const wheel = document.querySelector('.prayer-wheel svg');
+        if (!wheel) return;
+        let lastY = window.scrollY;
+        let boost = 0;
+        function tick() {
+            const dy = Math.abs(window.scrollY - lastY);
+            lastY = window.scrollY;
+            boost = Math.min(8, boost * 0.9 + dy * 0.05);
+            wheel.style.animationDuration = (24 / (1 + boost)) + 's';
+            requestAnimationFrame(tick);
+        }
+        tick();
+    })();
+
+    </script>
+</body>
+</html>

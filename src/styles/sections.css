@@ -1,0 +1,276 @@
+/* ============================================================================
+   Sections that don't use the demo panel reclaim the full width.
+   ============================================================================ */
+.projects-section.full-bleed {
+  padding-right: 3.5rem;
+}
+@media (max-width: 900px) {
+  .projects-section.full-bleed {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+/* ============================================================================
+   SOFTWARE — live GitHub repositories
+   ============================================================================ */
+.repo-intro {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.16em;
+  text-transform: lowercase;
+  color: var(--ink-dim);
+  margin-bottom: 2rem;
+}
+.repo-intro a {
+  color: var(--saffron);
+  border-bottom: 1px solid var(--saffron);
+}
+.repo-loading {
+  font-family: var(--font-display);
+  font-style: italic;
+  color: var(--ink-dim);
+  padding: 2rem 0;
+}
+.repo-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+}
+.repo-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1.5rem 1.4rem;
+  background: var(--paper);
+  text-decoration: none;
+  color: var(--ink);
+  transition: background 0.35s var(--ease-quiet, ease);
+}
+.repo-card:hover {
+  background: var(--paper-soft);
+}
+/* the two flagship products read as distinct from the pinned repos */
+.repo-card.featured {
+  box-shadow: inset 3px 0 0 var(--saffron);
+}
+.repo-card.featured .repo-link {
+  color: var(--saffron);
+}
+.repo-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.repo-name {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.2rem;
+  color: var(--ink-bright);
+}
+.repo-card:hover .repo-name {
+  color: var(--saffron);
+}
+.repo-lang {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  white-space: nowrap;
+}
+.repo-desc {
+  font-family: var(--font-serif);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--ink);
+  opacity: 0.78;
+  flex: 1;
+}
+.repo-meta {
+  display: flex;
+  gap: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
+  text-transform: lowercase;
+  color: var(--ink-dim);
+}
+.repo-card:hover .repo-link {
+  color: var(--saffron);
+}
+
+/* ============================================================================
+   RESEARCH — the Lotsawa Standard, as a document
+   ============================================================================ */
+/* centered document column */
+.research-doc {
+  max-width: 720px;
+  margin: 0 auto;
+}
+#ai-section .section-header {
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.research-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.8rem, 3.4vw, 2.6rem);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--ink-bright);
+  margin-bottom: 0.6rem;
+}
+.research-sub {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.05rem;
+  line-height: 1.5;
+  color: var(--ink-dim);
+  margin-bottom: 1.2rem;
+}
+.research-byline {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+}
+.research-byline a {
+  color: var(--saffron);
+}
+.research-pdf {
+  display: inline-block;
+  margin: 1.4rem 0 2.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.16em;
+  text-transform: lowercase;
+  color: var(--saffron);
+  border-bottom: 1px solid var(--saffron);
+  padding-bottom: 2px;
+}
+.research-section {
+  margin-top: 2.4rem;
+}
+.research-h {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.3rem;
+  color: var(--ink-bright);
+  margin-bottom: 0.9rem;
+}
+.research-p {
+  font-family: var(--font-serif), var(--font-tibetan);
+  font-size: 1rem;
+  line-height: 1.85;
+  color: var(--ink);
+  opacity: 0.85;
+  margin-bottom: 1rem;
+  max-width: 64ch;
+}
+.research-p .tib,
+.research-table .tib {
+  font-family: var(--font-tibetan);
+}
+.research-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.2rem 0 0.4rem;
+  font-size: 0.85rem;
+}
+.research-table th,
+.research-table td {
+  text-align: left;
+  padding: 0.5rem 0.8rem;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+.research-table th {
+  font-family: var(--font-mono);
+  font-size: 0.56rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  font-weight: 500;
+}
+.research-table td {
+  font-family: var(--font-serif);
+  color: var(--ink);
+}
+.research-table .tib {
+  font-size: 1.15em;
+  color: var(--ink-bright);
+}
+.research-cap {
+  font-family: var(--font-mono);
+  font-size: 0.56rem;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  margin-bottom: 1.4rem;
+}
+
+/* ============================================================================
+   COMING SOON (pixels / fashion)
+   ============================================================================ */
+.coming-soon {
+  padding: 5rem 0;
+}
+.coming-soon h3 {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  color: var(--ink-bright);
+  letter-spacing: 0.01em;
+}
+.coming-soon p {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--ink-dim);
+  margin-top: 1rem;
+}
+
+/* ============================================================================
+   Center every page's content column
+   ============================================================================ */
+/* reading-width columns (720px) */
+#words-section .section-header,
+.words-list,
+#tapes-section .section-header,
+.tapes-list,
+#now-section .section-header,
+.now-wrap,
+#guestbook-section .section-header,
+.guestbook-wrap {
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+/* wider grid columns (1120px) */
+#traces-section .section-header,
+.traces-grid,
+#swe-section .section-header,
+.repo-intro,
+.repo-list {
+  max-width: 1120px;
+  margin-left: auto;
+  margin-right: auto;
+}
+/* pixels — centered placeholder */
+#fashion-section .section-header {
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.coming-soon {
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}

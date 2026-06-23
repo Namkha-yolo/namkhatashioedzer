@@ -1,0 +1,31 @@
+{
+  "name": "namkha",
+  "private": true,
+  "version": "2.0.0",
+  "type": "module",
+  "description": "NAMKHA · ནམ་མཁའ་ — a workshop & diary at the seam of code, script, and sky",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc -b --noEmit",
+    "db:init": "wrangler d1 execute namkha-guestbook --local --file=./schema.sql",
+    "db:init:remote": "wrangler d1 execute namkha-guestbook --remote --file=./schema.sql",
+    "pages:dev": "vite build && wrangler pages dev ./dist",
+    "deploy": "vite build && wrangler pages deploy ./dist"
+  },
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-router-dom": "^7.1.1"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20241205.0",
+    "@types/react": "^19.0.2",
+    "@types/react-dom": "^19.0.2",
+    "@vitejs/plugin-react": "^4.3.4",
+    "typescript": "~5.7.2",
+    "vite": "^6.0.5",
+    "wrangler": "^3.95.0"
+  }
+}

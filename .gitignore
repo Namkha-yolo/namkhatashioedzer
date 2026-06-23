@@ -1,0 +1,31 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Cloudflare / Wrangler
+.wrangler
+.dev.vars
+
+# Full-res art source originals (the optimized copies in public/art/ are what the site serves)
+# leading slash anchors to repo root so public/art/ is NOT excluded
+/art/
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
