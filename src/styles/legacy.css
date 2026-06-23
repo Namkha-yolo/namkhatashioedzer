@@ -2016,7 +2016,7 @@ nav > .nav-links { justify-self: end; }
    intro — just leaves a big empty gap. Pull it down to merely clear the nav. */
 @media (max-width: 960px) {
     .hero {
-        padding-top: clamp(6rem, 14vh, 8.5rem);
+        padding-top: clamp(7.5rem, 15vh, 9.5rem);
         min-height: auto;
     }
 }
@@ -2227,8 +2227,10 @@ nav > .nav-links { justify-self: end; }
     color: var(--ink-dim);
 }
 @media (max-width: 760px) {
-    .hero-thangka { width: clamp(72px, 20vw, 110px); top: 4.25rem; right: 1.25rem; }
-    .hero-thangka figcaption { font-size: 0.5rem; letter-spacing: 0.12em; }
+    /* No room for the top-right thangka accent beside a full-width heading on a
+       phone — it overlapped the title. Hide the decorative accent on mobile;
+       the wheel + portrait carry the hero. (Favicon still uses thangka.png.) */
+    .hero-thangka { display: none; }
 }
 
 /* ===== the wheel ===== */
