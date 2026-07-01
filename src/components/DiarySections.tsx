@@ -380,8 +380,6 @@ const toEntry = (r: ApiRow): Entry => ({
 // Shown only if the backend can't be reached, so the page never looks broken.
 const seedEntries: Entry[] = [
   { name: 'tenzin_', from: 'via twitter', date: '05·24·2026', tib: 'བཀྲ་ཤིས་', body: 'found this site through the Tibetan keyboard project — the mandala spinning behind everything got me. saved.' },
-  { name: 'm. (lady)', from: 'madqh.com', date: '05·19·2026', body: 'hi from the absolute space. love the dusk palette. the prayer wheel in the corner made me smile :)' },
-  { name: 'stranger', from: 'unknown', date: '05·02·2026', body: '"do not be a hindrance to others\' practice" — i\'m stealing this for my own README.' },
   { name: 'ribosome', from: 'ribo.zone', date: '04·30·2026', body: 'webring me. the friends section is right. saw it. left a 88×31 in your direction.' },
 ]
 
